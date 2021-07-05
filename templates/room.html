@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+{% block title %}House{% endblock %}
+{% block head %}
+  {{ super() }}
+   <link rel="stylesheet" href="{{url_for('static', filename='css/house.css')}}">
+    <link rel="stylesheet" href="https://use.typekit.net/oaq5uou.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.2/socket.io.js" integrity="sha512-iZIBSs+gDyTH0ZhUem9eQ1t4DcEn2B9lHxfRMeGQhyNdSUz+rb+5A3ummX6DQTOIs1XK0gOteOg/LPtSo9VJ+w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    
+    <style>
+        @import url("https://use.typekit.net/oaq5uou.css");
+      </style>
+       <script>
+        function goBack() 
+        {
+            window.history.back();
+        }
+
+
+
+    </script>
+    <script>
+        console.log('try connect');
+
+        const socket = io.connect('http://localhost:5000');
+        socket.on("connect", function()
+        {
+            console.log("connected");
+        });
+
+
+        function send_command(relay_id)
+        {
+            socket.emit('process_request', {'relay':relay_id, 'code':String('{{room.code}}')});
+        }
+
+    </script>
+
+
+ 
+    
+{% endblock %}
+{% block content %}
+     <ul class="header">
+      <li class="title-profile"><p>{{room.name}}</p></li>
+    </ul>
+
+    <div class="play-button">
+        <a href="/">
+            <img class="play-button-img" src="{{url_for('static', filename='image/add.png')}}" alt="">
+        </a>
+    </div>
+
+    <div class="date-time">
+        <div class="half-block">
+            <div class="date-time-container">
+                <div class="date-time">
+                    <p id="date"class="date-time-text">date</p>
+                </div>
+            </div>
+        </div>
+        <div class="half-block">
+            <div class="date-time-container">
+                <div class="date-time">
+                    <p id= "time"class="date-time-text" >time</p>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+
+            var tday=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+            var tmonth=["January","February","March","April","May","June","July","August","September","October","November","December"];
+
+            function GetClock()
+            {
+            var d=new Date();
+            var nday=d.getDay(),nmonth=d.getMonth(),ndate=d.getDate(),nyear=d.getFullYear();
+            var nhour=d.getHours(),nmin=d.getMinutes(),nsec=d.getSeconds(),ap;
+
+            if(nhour==0){ap=" AM";nhour=12;}
+            else if(nhour<12){ap=" AM";}
+            else if(nhour==12){ap=" PM";}
+            else if(nhour>12){ap=" PM";nhour-=12;}
+
+            if(nmin<=9) nmin="0"+nmin;
+            if(nsec<=9) nsec="0"+nsec;
+
+            var date = ""+tday[nday]+", "+tmonth[nmonth]+" "+ndate+" "+nyear+""
+            var clocktext= " "+nhour+":"+nmin+":"+nsec+ap+"";
+
+            document.getElementById('time').innerText=clocktext;
+            document.getElementById('date').innerText=date;       
+            }
+
+            GetClock();
+            setInterval(GetClock,1000);
+
+        </script>
+
+    </div>
+
+
+    <div class="date-time">
+        <div class="half-block">
+            <div class="date-time-container">
+                <div class="date-time">
+                    <p id="room-temp"class="date-time-text">temperature</p>
+                </div>
+            </div>
+        </div>
+        <div class="half-block">
+            <div class="date-time-container">
+                <div class="date-time">
+                    <p id= "room-humidity"class="date-time-text" >humidity</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="team">
+        <div class="team-container" id="button-container">
+            {%for relay in room.relays%}
+            <div class="team-member" id="buttons">
+                <button class="button" "btn-selection" id="{{relay.pin}}"  onclick="send_command(this.id);"> "{{relay.name}}"</button>
+            </div>
+            {%endfor%}
+        </div>
+    </div>
+
+    
+    
+{% endblock %}

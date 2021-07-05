@@ -1,0 +1,73 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign in</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/sign_in.css') }}">
+    <!-- <link rel="stylesheet" type="text/css" href="precious.css"> -->
+    <link rel="stylesheet" href="https://use.typekit.net/oaq5uou.css">
+    <style>
+        @import url("https://use.typekit.net/oaq5uou.css");
+      </style>
+</head>
+<body>
+
+
+    <div class="container">
+
+        <div class="content">
+            <h1 class="Title">Welcome To Alfred</h1>
+            <div class="flashed-messages">
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {{messages[-1]}}
+                    {% endif %}
+                {% endwith %}
+            </div>
+            <div class="form" style="z-index:1000;">
+                <form class="form-signin" method="POST">
+                    <div>
+                        <div><label class="label-text" for="email">Email</label></div>
+                        <div><input class="text-box" type="email" name="email" required></div>
+                    </div>
+                        <br>
+                    <div>
+                        <div><label class="label-text" for="password">Password</label></div>
+                        <div><input class="text-box" type="password" name="password" required></div>
+                    </div>
+                        <br>
+                    <div class="button">
+                        <input type="submit" name="submit" value="Sign In" class="button-signin" >
+                    </div>
+                </form>
+
+            
+
+                <div class="signup">
+                    <a class="signup-text">No account? </a>
+                    <a href="/register" class="signup-link">sign up</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+
+            <div class="waveWrapper waveAnimation">
+            
+                <div class="waveWrapperInner bgTop">
+                    <div class="wave waveTop" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-top.png')"></div>
+                </div>
+                <div class="waveWrapperInner bgMiddle">
+                    <div class="wave waveMiddle" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-mid.png')"></div>
+                </div>
+                <div class="waveWrapperInner bgBottom">
+                    <div class="wave waveBottom" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-bot.png')"></div>
+                </div>
+            </div>
+
+    
+
+</body>
+</html>

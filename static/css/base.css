@@ -1,0 +1,143 @@
+@font-face {
+    font-family: 'Gidole Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Gidole Regular'), url('../fonts/Gidole-Regular.woff') format('woff');
+    }
+
+    @keyframes move_wave {
+        0% {
+            transform: translateX(0) translateZ(0) scaleY(1)
+        }
+        50% {
+            transform: translateX(-25%) translateZ(0) scaleY(0.55)
+        }
+        100% {
+            transform: translateX(-50%) translateZ(0) scaleY(1)
+        }
+    }
+
+
+
+body {
+    max-width: 1920px;
+    max-height: 1920px;
+    background: #eee;
+}
+
+.container
+{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+
+
+.content{
+
+    font-weight: bold;
+    text-shadow: -1px -1px 1px #000, 1px 1px 1px #000;
+    position: relative;
+    z-index: 100;
+    height:100%;
+}
+
+.background{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -100;
+}
+
+
+
+.Title {
+    margin-left: 20px;
+    margin-right: 20px;
+    font-family: industry-inc-3d, sans-serif;
+    height: 128px;
+    font-weight: normal;
+    font-size: 45px;
+    line-height: 60px;
+    text-align: center;
+    color: red;
+    z-index: 1000;
+}
+
+.flashed-messages
+{
+    z-index: 20;
+    font-family: industry-inc-base, sans-serif;
+    height: 24px;
+    font-weight: normal;
+    font-size: 15px;
+    text-align: center;
+    color: red;
+    /* border: 1.5px solid #f05d5b;
+    box-shadow: 4px 4px 0px #f05d5b;
+    margin-top: 10px; */
+}
+
+
+
+.waveWrapper {
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    margin: auto;
+}
+.waveWrapperInner {
+    position: absolute;
+    width: 100%;
+    overflow: hidden;
+    height: 100%;
+    background-image: linear-gradient(to top, #3f3786 20%, #27273c 80%);
+
+}
+.bgTop {
+    
+    z-index: 15;
+    opacity: 0.5;
+}
+.bgMiddle {
+    z-index: 10;
+    opacity: 0.75;
+}
+.bgBottom {
+    z-index: 5;
+    opacity: 0.9;
+}
+.wave {
+    position: absolute;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    background-repeat: repeat no-repeat;
+    background-position: 0 bottom;
+    transform-origin: center bottom;
+}
+.waveTop {
+    background-size: 50% 100px;
+}
+.waveAnimation .waveTop {
+  animation: move-wave 3s;
+   -webkit-animation: move-wave 3s;
+   -webkit-animation-delay: 1s;
+   animation-delay: 1s;
+}
+.waveMiddle {
+    background-size: 50% 120px;
+}
+.waveAnimation .waveMiddle {
+    animation: move_wave 10s linear infinite;
+}
+.waveBottom {
+    background-size: 50% 100px;
+}
+.waveAnimation .waveBottom {
+    animation: move_wave 15s linear infinite;
+}

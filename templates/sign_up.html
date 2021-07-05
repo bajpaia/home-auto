@@ -1,0 +1,85 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign up</title>
+    <link rel="stylesheet" href="../static/css/sign_in.css">
+    <link rel="stylesheet" href="https://use.typekit.net/oaq5uou.css">
+    <style>
+        @import url("https://use.typekit.net/oaq5uou.css");
+      </style>
+</head>
+<body>
+     <div class="container">
+        <div class="content">
+            <h1 class="Title">Create Acccount</h1>
+    
+            <div class="flashed-messages">
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                            {{ messages[0] }}
+
+                    {% endif %}
+                {% endwith %}
+            </div>
+
+            <form action="submit" method="POST"></form>
+                <div class="form">
+                        <form method="POST" id="form">
+                            <div class="form-group">
+                                <label class="label-text"for="name">Full Name</label>
+                                <br>
+                                <input class="text-box" type="text" name="name" required>
+                            </div>        
+                
+                            <div class="form-group"> 
+                                <label  class="label-text" for="email">Email</label>
+                                <br>
+                                <input class="text-box" type="email" name="email" required>
+                            </div>
+                
+                            <div class="form-group">
+                                <label class="label-text">Password</label>
+                                <br>
+                                <input class="text-box" type="password" name="password" minlength="8" required>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label class="label-text" for="confirmpassword">Confirm Password</label>
+                                <br>
+                                <input class="text-box" type="password" name="confirmpassword" required>
+
+                            </div>
+                            <br>
+                
+                            <div class="button">
+                                <input class="button-signin" type="submit" name="submit" value="Create">
+                            </div>
+                            <div class="signup">
+                                <a class="signup-text">Have account? </a>
+                                <a href="/" class="signin-link">sign in</a>
+                            </div>
+                     </form>
+                     </div>
+                </form>
+    </div>
+    </div>
+         
+    
+            <div class="waveWrapper waveAnimation">
+            
+                <div class="waveWrapperInner bgTop">
+                    <div class="wave waveTop" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-top.png')"></div>
+                </div>
+                <div class="waveWrapperInner bgMiddle">
+                    <div class="wave waveMiddle" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-mid.png')"></div>
+                </div>
+                <div class="waveWrapperInner bgBottom">
+                    <div class="wave waveBottom" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-bot.png')"></div>
+                </div>
+            </div>
+
+</body>
+</html>

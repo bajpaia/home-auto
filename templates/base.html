@@ -1,0 +1,53 @@
+<html lang="en">
+<head>
+{% block head %}
+<title>{% block title %}{% endblock %}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <link rel="stylesheet" href="https://use.typekit.net/oaq5uou.css">
+    <style>
+        @import url("https://use.typekit.net/oaq5uou.css");
+      </style>
+{% endblock %}
+</head>
+<body>
+
+
+    <div class="container">
+
+        <div class="content">
+            <div class="flashed-messages">
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {{messages[-1]}}
+                    {% endif %}
+                {% endwith %}
+            </div>
+            {% block content %}
+            
+            {% endblock %}
+
+        </div>
+    </div>
+    
+
+
+    <div class="waveWrapper waveAnimation">
+    
+        <div class="waveWrapperInner bgTop">
+            <div class="wave waveTop" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-top.png')"></div>
+        </div>
+        <div class="waveWrapperInner bgMiddle">
+            <div class="wave waveMiddle" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-mid.png')"></div>
+        </div>
+        <div class="waveWrapperInner bgBottom">
+            <div class="wave waveBottom" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-bot.png')"></div>
+        </div>
+    </div>
+
+    
+
+</body>
+</html>
