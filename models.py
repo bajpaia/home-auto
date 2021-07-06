@@ -69,7 +69,7 @@ class Room:
         self.code = name.lower().replace(' ', '-')
         self.relays = list()
         self.sensors = list()
-        self.components = {'relays': self.relays, 'sensors':self.sensors}
+
         
 
     def add_relays(self, relays):
