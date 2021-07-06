@@ -39,6 +39,10 @@ def connection_event():
 @sio.on('execute_request')
 def execute(data):
     print(data)
+    for relay in room.relays:
+        if relay == data['relay']:
+            relay.toggle()
+            print(on)
 
 
 

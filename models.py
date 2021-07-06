@@ -1,7 +1,8 @@
 import RPi.GPIO as GPIO
 import Adafruit_DHT
 import pickle
-import threading
+from threading import Thread, Event
+from time import sleep
 
 class Relay:
     def __init__(self, pin=11, name='Switch'):
@@ -41,11 +42,15 @@ class TemperatureHumiditySensor:
     def __init__(self, pin=4):
         self.device = Adafruit_DHT.DHT11
         self.pin = pin
+        self.thread_stop_event = Event()
+        self.values = {"temperature":0, "humidity":0}
     
     def get_value():
-        humidity, temperature = Adfruit_DHT.read_retry(self.device, self.pin)
-        return {"temperature": temperature, "humidity":humidity} 
-    
+        while not self.thread_stop_event.isSet():
+            values["humidity"], values["temperature"] = Adfruit_DHT.read_retry(self.device, self.pin)
+            time.sleep(60)
+
+
     def __eq__(self, other):
         assert type(other) is int, "Only integer values can be compared with sensor"
         if self.pin == other:
@@ -67,9 +72,9 @@ class Room:
 
     def add_relays(self, relays):
         if type(relays) == type(Relay()):
-            self.relays.append(relays.__dict__)
+            self.relays.append(relays)
         elif type(relays) == list:
-            self.relays += [relay.__dict__ for relay in relays]
+            self.relays += [relay for relay in relays]
 
 
     def __repr__(self):
@@ -92,7 +97,6 @@ class Room:
 
 
     def save(self):
-        
         f = open('room_config.pickle', 'wb')
         pickle.dump(self.__dict__, f)
         f.close()
