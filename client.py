@@ -3,6 +3,7 @@ import socketio
 import time
 import pickle
 from models import Room
+from copy import deepcopy
 
 
 RELAY = 11
@@ -27,7 +28,8 @@ while not connected:
     else:
         connected = True
         print('connected')
-        room_dict = room.copy()
+        room_dict = deepcopy(room)
+        print(type(room.relays[0]))
         room_dict.relays = [relay.__dict__ for relay in room_dict.relays]
         sio.emit('connection_ack', room_dict.__dict__)
 
