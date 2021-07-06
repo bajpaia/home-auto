@@ -9,10 +9,10 @@ class Relay:
         self.name = name
         self.pin = pin
         self.active = False
-        GPIO.setup(self.pin, GPIO.OUT)
-        GPIO.output(self.pin, GPIO.LOW)
 
     def toggle(self):
+        GPIO.setup(self.pin, GPIO.OUT)
+        GPIO.setmode(GPIO.BOARD)
         if self.active:
             self.active = False
             GPIO.output(self.pin, GPIO.LOW)

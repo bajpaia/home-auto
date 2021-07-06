@@ -14,7 +14,7 @@ SERVER = 'http://192.168.0.201:5000'
 
 room = Room()
 room.load()
-GPIO.setmode(GPIO.BOARD)
+
 
 
 sio = socketio.Client()
