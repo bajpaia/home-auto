@@ -45,7 +45,7 @@ def execute(data):
     print(data)
     for relay in room.relays:
         print(relay)
-        if relay == data['relay']:
+        if relay == int(data['relay']):
             relay.toggle()
             print(on)
 
