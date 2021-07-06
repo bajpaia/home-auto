@@ -28,7 +28,7 @@ while not connected:
         connected = True
         print('connected')
         room_dict = room
-        room_dict['relays'] = [relay.__dict__ for relay in room_dict['relays']]
+        room_dict.relays = [relay.__dict__ for relay in room_dict.relays]
         sio.emit('connection_ack', room_dict)
 
 
@@ -36,7 +36,7 @@ while not connected:
 def connection_event():
     print("connected sending ack to server")
     room_dict = room
-    room_dict['relays'] = [relay.__dict__ for relay in room_dict['relays']]
+    room_dict.relays = [relay.__dict__ for relay in room_dict.relays]
     sio.emit('connection_ack', room_dict)
 
 
