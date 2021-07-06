@@ -24,7 +24,7 @@
     <script>
         console.log('try connect');
 
-        const socket = io.connect('http://localhost:5000');
+        const socket = io.connect('http://192.168.0.201:5000');
         socket.on("connect", function()
         {
             console.log("connected");

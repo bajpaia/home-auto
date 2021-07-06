@@ -1,20 +1,25 @@
-# import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO
+import AdafruitDHT
 import pickle
+import threading
 
 class Relay:
     def __init__(self, pin=11, name='Switch'):
         self.name = name
         self.pin = pin
         self.active = False
-        # GPIO.setmode(GPIO.BOARD)
-        # GPIO.setup(RELAY, GPIO.OUT)
-        # GPIO.output(RELAY, GPIO.LOW)
+        GPIO.setmode(GPIO.BOARD)
+        GPIO.setup(self.pin, GPIO.OUT)
+        GPIO.output(self.pin, GPIO.LOW)
 
     def toggle(self):
         if self.active:
             self.active = False
+            GPIO.output(self.pin, GPIO.LOW)
+
         else:
             self.active = True
+            GPIO.output(self.pin, GPIO.HIGH)
 
     def is_active(self):
         return self.active
@@ -28,6 +33,27 @@ class Relay:
 
     def __repr__(self):
         return 'Name:{0} \n Pin:{1}'.format(self.name, self.pin)
+
+
+
+
+class TemperatureHumiditySensor:
+    def __init__(self, pin=4):
+        self.device = Adafruit_DHT.DHT11
+        self.pin = pin
+    
+    def get_value():
+        humidity, temperature = Adfruit_DHT.read_retry(self.device, self.pin)
+        return {"temperature": temperature, "humidity":humidity} 
+    
+    def __eq__(self, other):
+        assert type(other) is int, "Only integer values can be compared with sensor"
+        if self.pin == other:
+            return True    
+        return False
+
+    
+
 
 
 class Room:

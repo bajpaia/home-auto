@@ -1,4 +1,4 @@
-# import RPi.GPIO as GPIO
+
 import socketio
 import time
 import pickle
@@ -7,10 +7,7 @@ from models import Room
 print(socketio.__version__)
 
 RELAY = 11
-SERVER = 'http://localhost:5000'
-# GPIO.setmode(GPIO.BOARD)
-# GPIO.setup(RELAY, GPIO.OUT)
-# GPIO.output(RELAY, GPIO.LOW)
+SERVER = 'http://192.168.0.201:5000'
 
 
 

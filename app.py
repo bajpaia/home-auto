@@ -5,7 +5,7 @@ import  flask_socketio
 
 
 app = Flask(__name__)
-socket = SocketIO(app)
+socket = SocketIO(app, async_mode='threading')
 
 rooms = dict()
 print(rooms)
@@ -24,7 +24,10 @@ def test():
 
 @app.route('/<sid>/controls')
 def controls(sid):
-    return render_template('room.html', room=rooms[sid])
+    if request.method == 'GET':
+        if sid in rooms:
+            return render_template('room.html', room=rooms[sid])
+        return redirect(url_for('test'))
 
 
 @socket.on('connection_ack')

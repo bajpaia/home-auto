@@ -22,7 +22,7 @@
     <script>
         console.log('try connect');
 
-        const socket = io.connect('http://localhost:5000');
+        const socket = io.connect('http://192.168.0.201:5000');
         socket.on("connect", function()
         {
             console.log("connected");
@@ -124,7 +124,7 @@
         <div class="team-container" id="button-container">
             {%for relay in room.relays%}
             <div class="team-member" id="buttons">
-                <button class="button" "btn-selection" id="{{relay.pin}}"  onclick="send_command(this.id);"> "{{relay.name}}"</button>
+                <button class="button" "btn-selection" id="{{relay.pin}}"  onclick="send_command(this.id);"> {{relay.name}}</button>
             </div>
             {%endfor%}
         </div>
