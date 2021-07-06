@@ -9,7 +9,6 @@ class Relay:
         self.name = name
         self.pin = pin
         self.active = False
-        GPIO.setmode(GPIO.BOARD)
         GPIO.setup(self.pin, GPIO.OUT)
         GPIO.output(self.pin, GPIO.LOW)
 

@@ -4,6 +4,7 @@ import time
 import pickle
 from models import Room
 from copy import deepcopy
+import RPi.GPIO as GPIO
 
 
 RELAY = 11
@@ -13,7 +14,7 @@ SERVER = 'http://192.168.0.201:5000'
 
 room = Room()
 room.load()
-
+GPIO.setmode(GPIO.BOARD)
 
 
 sio = socketio.Client()
@@ -29,7 +30,6 @@ while not connected:
         connected = True
         print('connected')
         room_dict = deepcopy(room)
-        print(type(room.relays[0]))
         room_dict.relays = [relay.__dict__ for relay in room_dict.relays]
         sio.emit('connection_ack', room_dict.__dict__)
 
@@ -37,8 +37,7 @@ while not connected:
 @sio.on('connect')
 def connection_event():
     print("connected sending ack to server")
-    print(type(room.relays[0]))
-    room_dict = room
+    room_dict = deepcopy(room)
     room_dict.relays = [relay.__dict__ for relay in room_dict.relays]
     sio.emit('connection_ack', room_dict.__dict__)
 
@@ -46,7 +45,6 @@ def connection_event():
 @sio.on('execute_request')
 def execute(data):
     print(data)
-    print(type(room.relays[0]))
     for relay in room.relays:
         if relay.pin == int(data['relay']):
             relay.toggle()
