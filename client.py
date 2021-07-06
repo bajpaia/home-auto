@@ -44,6 +44,7 @@ def connection_event():
 def execute(data):
     print(data)
     for relay in room.relays:
+        print(relay)
         if relay == data['relay']:
             relay.toggle()
             print(on)
