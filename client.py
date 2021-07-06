@@ -12,7 +12,7 @@ SERVER = 'http://192.168.0.201:5000'
 
 room = Room()
 room.load()
-print(type(room.relays[0]))
+
 
 
 sio = socketio.Client()
@@ -30,11 +30,13 @@ while not connected:
         room_dict = room
         room_dict.relays = [relay.__dict__ for relay in room_dict.relays]
         sio.emit('connection_ack', room_dict.__dict__)
+        print(type(room.relays[0]))
 
 
 @sio.on('connect')
 def connection_event():
     print("connected sending ack to server")
+    print(type(room.relays[0]))
     room_dict = room
     room_dict.relays = [relay.__dict__ for relay in room_dict.relays]
     sio.emit('connection_ack', room_dict.__dict__)
