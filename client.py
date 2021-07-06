@@ -27,13 +27,9 @@ while not connected:
     else:
         connected = True
         print('connected')
-        print(type(room.relays[0]))
-        room_dict = room
-        print(type(room.relays[0]))
+        room_dict = room.copy()
         room_dict.relays = [relay.__dict__ for relay in room_dict.relays]
-        print(type(room.relays[0]))
         sio.emit('connection_ack', room_dict.__dict__)
-        print(type(room.relays[0]))
 
 
 @sio.on('connect')
