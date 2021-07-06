@@ -4,7 +4,6 @@ import time
 import pickle
 from models import Room
 
-print(socketio.__version__)
 
 RELAY = 11
 SERVER = 'http://192.168.0.201:5000'
@@ -46,10 +45,8 @@ def execute(data):
     print(data)
     print(type(room.relays[0]))
     for relay in room.relays:
-        print(relay)
         if relay.pin == int(data['relay']):
             relay.toggle()
-            print(relay.pin)
 
 
 
