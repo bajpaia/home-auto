@@ -13,6 +13,7 @@ SERVER = 'http://192.168.0.201:5000'
 
 room = Room()
 room.load()
+print(type(room))
 
 
 sio = socketio.Client()
