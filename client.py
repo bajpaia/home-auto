@@ -44,6 +44,7 @@ def connection_event():
 @sio.on('execute_request')
 def execute(data):
     print(data)
+    print(type(room.relays[0]))
     for relay in room.relays:
         print(relay)
         if relay.pin == int(data['relay']):
