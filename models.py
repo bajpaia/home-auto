@@ -1,5 +1,5 @@
 import RPi.GPIO as GPIO
-import AdafruitDHT
+import Adafruit_DHT
 import pickle
 import threading
 
