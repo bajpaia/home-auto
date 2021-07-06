@@ -17,10 +17,12 @@ class Relay:
         if self.active:
             self.active = False
             GPIO.output(self.pin, GPIO.LOW)
+            print('relay {0} off'.format(self.pin))
 
         else:
             self.active = True
             GPIO.output(self.pin, GPIO.HIGH)
+            print('relay {0} on'.format(self.pin))
 
     def is_active(self):
         return self.active
