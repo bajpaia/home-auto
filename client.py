@@ -24,7 +24,7 @@ connected = False
 
 while not connected:
     try:
-        sio.connect(SERVER)
+        await sio.connect(SERVER)
     except Exception as e:
         print('error')
         print(e)
@@ -45,7 +45,7 @@ async def connection_event():
 
 
 @sio.on('execute_request')
-def execute(data):
+async def execute(data):
     print(data)
     for relay in room.relays:
         if relay.pin == int(data['relay']):
@@ -57,7 +57,7 @@ def execute(data):
 
 room_event = 'test_room'
 @sio.on(room_event)
-def handle_test(data):
+async def handle_test(data):
     print(data)
 
 
