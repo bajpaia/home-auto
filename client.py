@@ -23,7 +23,7 @@ connected = False
 
 while not connected:
     try:
-        await sio.connect(SERVER)
+        sio.connect(SERVER)
     except Exception as e:
         print('error')
         print(e)
