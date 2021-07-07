@@ -17,7 +17,7 @@ room.load()
 
 
 
-sio = socketio.Client()
+sio = socketio.AsyncClient()
 connected = False
 
 while not connected:
