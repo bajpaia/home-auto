@@ -5,7 +5,7 @@ import pickle
 from models import Room
 from copy import deepcopy
 import RPi.GPIO as GPIO
-from asyncio import await
+import asyncio
 
 
 RELAY = 11
