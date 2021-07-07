@@ -18,7 +18,7 @@ room.load()
 
 
 
-sio = socketio.AsyncClient()
+sio = socketio.AsyncClient(logger=True, engineio_logger=True)
 connected = False
 
 while not connected:
@@ -36,7 +36,7 @@ while not connected:
 
 
 @sio.on('connect')
-def connection_event():
+async def connection_event():
     print("connected sending ack to server")
     room_dict = deepcopy(room)
     room_dict.relays = [relay.__dict__ for relay in room_dict.relays]
