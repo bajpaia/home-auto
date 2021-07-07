@@ -5,6 +5,7 @@ import pickle
 from models import Room
 from copy import deepcopy
 import RPi.GPIO as GPIO
+from asyncio import await
 
 
 RELAY = 11
@@ -22,7 +23,7 @@ connected = False
 
 while not connected:
     try:
-        sio.connect(SERVER)
+        await sio.connect(SERVER)
     except Exception as e:
         print('error')
         print(e)
