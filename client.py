@@ -46,7 +46,7 @@ def connection_event():
 
 @sio.on("toggle_room_sensors")
 def toggle_sensors():
-    task = sio.start_background_task(target=sensor_data, temp_hum)
+    task = sio.start_background_task(sensor_data, temp_hum)
 
 
 
