@@ -6,21 +6,20 @@ from models import Room
 from copy import deepcopy
 import RPi.GPIO as GPIO
 import asyncio
+from models import TemperatureHumiditySensor
 
 
-RELAY = 11
 SERVER = 'http://192.168.0.201:5000'
-
-
-
 room = Room()
+temp_hum = TemperatureHumiditySensor()
 room.load()
-
-
-
-sio = socketio.Client(logger=True, engineio_logger=True)
-
 connected = False
+user_toggle = False  ##True, if user viewing room on browser (flag for background tasks)
+
+
+sio = socketio.Client()
+
+
 
 while not connected:
     try:
@@ -44,6 +43,10 @@ def connection_event():
     sio.emit('connection_ack', room_dict.__dict__)
 
 
+
+@sio.on("toggle_room")
+
+
 @sio.on('execute_request')
 def execute(data):
     print(data)
@@ -52,6 +55,11 @@ def execute(data):
             relay.toggle()
 
 
+def sensor_data(sensor):
+    while True:
+        values = sensor.get_data()
+        sio.emit('process_sensor_data', room[]values)
+        sio.sleep(delay*60)
 
 
 

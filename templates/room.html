@@ -28,7 +28,6 @@
             console.log("connected");
         });
 
-
         function send_command(relay_id)
         {
             socket.emit('process_request', {'relay':relay_id, 'code':String('{{room.code}}')});

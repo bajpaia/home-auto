@@ -3,6 +3,7 @@ import Adafruit_DHT
 import pickle
 from threading import Thread, Event
 from time import sleep
+from copy import deepcopy
 
 class Relay:
     def __init__(self, pin=11, name='Switch'):
@@ -40,17 +41,23 @@ class Relay:
 
 
 class TemperatureHumiditySensor:
-    def __init__(self, pin=4):
+    def __init__(self, pin=4, delay_mins = 1):
         self.device = Adafruit_DHT.DHT11
         self.pin = pin
-        self.thread_stop_event = Event()
+        self.delay = delay_mins
+        self.active = True
         self.values = {"temperature":0, "humidity":0}
     
     def get_value():
-        while not self.thread_stop_event.isSet():
-            values["humidity"], values["temperature"] = Adfruit_DHT.read_retry(self.device, self.pin)
-            time.sleep(60)
+        values["humidity"], values["temperature"] = Adfruit_DHT.read_retry(self.device, self.pin)
+        return values
 
+    
+    def toggle(self):
+        if self.active:
+            self.active = False
+        else:
+            self.active = True 
 
     def __eq__(self, other):
         assert type(other) is int, "Only integer values can be compared with sensor"
@@ -87,6 +94,11 @@ class Room:
         if self.code == other:
             return True    
         return False
+
+    def __dict__(self):
+        room_dict = deepcopy(room)
+        room_dict.relays = [relay.__dict__ for relay in room_dict.relays]
+        return room_dict.__dict__
 
     
     def load(self):
