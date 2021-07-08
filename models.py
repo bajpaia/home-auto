@@ -49,7 +49,7 @@ class TemperatureHumiditySensor:
         self.values = {"temperature":0, "humidity":0}
     
     def get_data(self):
-        values["humidity"], values["temperature"] = Adafruit_DHT.read_retry(self.device, self.pin)
+        self.values["humidity"], values["temperature"] = Adafruit_DHT.read_retry(self.device, self.pin)
         return values
 
     
