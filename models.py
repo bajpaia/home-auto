@@ -95,10 +95,10 @@ class Room:
             return True    
         return False
 
-    def __dict__(self):
-        room_dict = deepcopy(room)
-        room_dict.relays = [relay.__dict__ for relay in room_dict.relays]
-        return room_dict.__dict__
+    # def __dict__(self):
+    #     room_dict = deepcopy(room)
+    #     room_dict.relays = [relay.__dict__ for relay in room_dict.relays]
+    #     return room_dict.__dict__
 
     
     def load(self):
