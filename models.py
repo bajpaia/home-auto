@@ -48,7 +48,7 @@ class TemperatureHumiditySensor:
         self.active = True
         self.values = {"temperature":0, "humidity":0}
     
-    def get_data():
+    def get_data(self):
         values["humidity"], values["temperature"] = Adfruit_DHT.read_retry(self.device, self.pin)
         return values
 
