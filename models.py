@@ -50,7 +50,7 @@ class TemperatureHumiditySensor:
     
     def get_data(self):
         self.values["humidity"], self.values["temperature"] = Adafruit_DHT.read_retry(self.device, self.pin)
-        return values
+        return self.values
 
     
     def toggle(self):
