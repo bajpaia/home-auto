@@ -51,6 +51,16 @@
 {% endblock %}
 {% block content %}
      <ul class="header">
+     <li class="back-button">
+            <div class="back-icon">
+                <input type = "image" class="back-icon-img" src="{{url_for('static', filename='image/back.png')}}" alt="" onclick="goBack()">
+            </div>
+        </li>
+        <li class="edit-button">
+             <div class="edit-icon">
+                <img class="edit-icon-img" src="{{url_for('static', filename='image/edit.png')}}" alt="">
+            </div>
+        </li>
       <li class="title-profile"><p>{{room.name}}</p></li>
     </ul>
 
