@@ -64,7 +64,7 @@ def sensor_data(sensor):
     while sensor.active:
         values = sensor.get_data()
         sio.emit('process_sensor_data', values)
-        sio.sleep(delay*60)
+        sio.sleep(sensor.delay*60)
 
 
 
