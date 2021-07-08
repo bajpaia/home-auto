@@ -43,13 +43,10 @@ def connection_event():
     sio.emit('connection_ack', room_dict.__dict__)
 
 
-
 @sio.on("toggle_room_sensors")
 def toggle_sensors():
     task = sio.start_background_task(sensor_data, temp_hum)
     print('starting background task')
-
-
 
 
 @sio.on('execute_request')
