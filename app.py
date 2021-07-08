@@ -38,6 +38,18 @@ def acknoledge(data):
     rooms[request.sid] = data
 
 
+@socket.on('toggle_sensors')
+def activate_sensor(data):
+    socket.emit('toggle_room_sensors',room=data['code'] )
+
+
+
+@socket.on('process_sensor_data')
+def process_sensor_data(data):
+    print(data)
+
+
+
 
 @socket.on('process_request')
 def process_request(data):

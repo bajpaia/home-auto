@@ -44,7 +44,11 @@ def connection_event():
 
 
 
-@sio.on("toggle_room")
+@sio.on("toggle_room_sensors")
+def toggle_sensors():
+    task = sio.start_background_task(target=sensor_data, temp_hum)
+
+
 
 
 @sio.on('execute_request')
@@ -56,7 +60,7 @@ def execute(data):
 
 
 def sensor_data(sensor):
-    while True:
+    while sensor.active:
         values = sensor.get_data()
         sio.emit('process_sensor_data', room[]values)
         sio.sleep(delay*60)
