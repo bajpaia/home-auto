@@ -3,19 +3,21 @@ from flask_socketio import *
 import  flask_socketio
 
 
-
 app = Flask(__name__)
 socket = SocketIO(app, async_mode='threading')
-
 rooms = dict()
 print(rooms)
+
+
 @app.route('/')
 def index():
     return render_template('index.html')
 
+
 @app.route('/register')
 def register_user():
     return render_template('sign_up.html')
+
 
 @app.route('/test')
 def test():
@@ -41,15 +43,14 @@ def acknoledge(data):
 @socket.on('toggle_sensors')
 def activate_sensor(data):
     print('starting room sensors')
-    socket.emit('toggle_room_sensors',room=data['code'] )
-
+    socket.emit('toggle_room_sensors',room=data['code'])
 
 
 @socket.on('process_sensor_data')
 def process_sensor_data(data):
+    data['code']= request.sid
     print(data)
-
-
+    socket.emit('update_sensor', data)
 
 
 @socket.on('process_request')

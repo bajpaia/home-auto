@@ -36,6 +36,18 @@
             socket.emit('process_request', {'relay':relay_id, 'code':String('{{room.code}}')});
         }
 
+        socket.on('update_sensor',function(data)
+        {
+            if (data['code'] == '{{room.code}}')
+            {
+                console.log(data);
+                $('#room-humidity').text(data['humidity']);
+                $('#room-temp').text(data['temperature']);
+                console.log('updating values');
+            }
+
+        });
+
     </script>
 
 
