@@ -25,7 +25,7 @@
         const socket = io.connect('http://192.168.0.201:5000');
         socket.on("connect", function()
         {
-            socket.emit('process_request', {'relay':relay_id, 'code':String('{{room.code}}')});
+
             socket.emit('toggle_sensors', {'code':String('{{room.code}}')});
             console.log('starting room sensors')
             
