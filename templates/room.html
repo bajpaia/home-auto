@@ -26,7 +26,8 @@
         socket.on("connect", function()
         {
             socket.emit('process_request', {'relay':relay_id, 'code':String('{{room.code}}')});
-            socket.emit('toggle_room_sensors', {'code':String('{{room.code}}')});
+            socket.emit('toggle_sensors', {'code':String('{{room.code}}')});
+            console.log('starting room sensors')
             
         });
 

@@ -40,6 +40,7 @@ def acknoledge(data):
 
 @socket.on('toggle_sensors')
 def activate_sensor(data):
+    print('starting room sensors')
     socket.emit('toggle_room_sensors',room=data['code'] )
 
 
