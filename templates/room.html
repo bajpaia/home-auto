@@ -68,9 +68,9 @@
       <li class="title-profile"><p>{{room.name}}</p></li>
     </ul>
 
-    <div class="play-button" id="controls">
+    <div class="add-button" id="controls">
 
-            <img class="play-button-img" src="{{url_for('static', filename='image/add.png')}}" alt="" onclick="">
+            <img class="add-button-img" src="{{url_for('static', filename='image/add.png')}}" alt="" onclick="">
     </div>
 
     <div class="date-time">
@@ -142,10 +142,10 @@
 
 
 
-    <div class="team">
-        <div class="team-container" id="button-container">
+    <div class="buttons">
+        <div class="button-container" id="button-container">
             {%for relay in room.relays%}
-            <div class="team-member" id="buttons">
+            <div class="access-button" id="buttons">
                 <button class="button" "btn-selection" id="{{relay.pin}}"  onclick="send_command(this.id);"> {{relay.name}}</button>
             </div>
             {%endfor%}

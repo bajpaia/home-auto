@@ -55,9 +55,9 @@
       <li class="title-profile"><p>My House</p></li>
     </ul>
 
-       <div class="play-button" id="controls">
+       <div class="add-button" id="controls">
 
-            <img class="play-button-img" src="{{url_for('static', filename='image/add.png')}}" alt="" >
+            <img class="add-button-img" src="{{url_for('static', filename='image/add.png')}}" alt="" >
     </div>
 
     <div class="date-time">
@@ -132,10 +132,10 @@
         </div>
     </div>
 
-    <div class="team">
-        <div class="team-container" id="button-container">
+    <div class="buttons">
+        <div class="button-container" id="button-container">
         {%for room in rooms%}
-            <div class="team-member" id="buttons">
+            <div class="access-button" id="buttons">
                 <button type="button" class="button" "btn-selection" id="{{rooms[room].code}}" onclick="window.location.href='{{ url_for('controls' , sid=room)}}';"> 
                     {{rooms[room].name}}
                 </button>
@@ -143,8 +143,4 @@
         {%endfor%} 
         </div>
     </div>
-
-
-
-    
 {% endblock %}
