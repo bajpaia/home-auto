@@ -28,6 +28,7 @@ class ServoMotor:
     def move_servo(self, pulse):
         self.pwm.setServoPulse(self.channel, pulse)
         self.position += pulse
+        time.sleep(0.01)
 
 
 
