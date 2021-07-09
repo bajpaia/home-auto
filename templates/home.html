@@ -37,18 +37,27 @@
     </script>
 
 
+
  
     
 {% endblock %}
 {% block content %}
      <ul class="header">
+        <li class="back-button">
+            <div class="back-icon">
+            </div>
+        </li>
+        <li class="edit-button">
+             <div class="edit-icon">
+                <img class="edit-icon-img" src="{{url_for('static', filename='image/edit.png')}}" alt="">
+            </div>
+        </li>
       <li class="title-profile"><p>My House</p></li>
     </ul>
 
-    <div class="play-button">
-        <a href="/">
-            <img class="play-button-img" src="{{url_for('static', filename='image/add.png')}}" alt="">
-        </a>
+       <div class="play-button" id="controls">
+
+            <img class="play-button-img" src="{{url_for('static', filename='image/add.png')}}" alt="" >
     </div>
 
     <div class="date-time">
@@ -135,6 +144,7 @@
         </div>
     </div>
 
-    
+
+
     
 {% endblock %}

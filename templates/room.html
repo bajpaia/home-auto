@@ -15,11 +15,14 @@
         {
             window.history.back();
         }
-
-
-
-    </script>
-    <script>
+        </script>
+        
+        
+        
+        
+        
+        
+        <script>
         console.log('try connect');
 
         const socket = io.connect('http://192.168.0.201:5000');
@@ -61,13 +64,13 @@
                 <img class="edit-icon-img" src="{{url_for('static', filename='image/edit.png')}}" alt="">
             </div>
         </li>
+     
       <li class="title-profile"><p>{{room.name}}</p></li>
     </ul>
 
-    <div class="play-button">
-        <a href="/">
-            <img class="play-button-img" src="{{url_for('static', filename='image/add.png')}}" alt="">
-        </a>
+    <div class="play-button" id="controls">
+
+            <img class="play-button-img" src="{{url_for('static', filename='image/add.png')}}" alt="" onclick="">
     </div>
 
     <div class="date-time">
@@ -148,6 +151,8 @@
             {%endfor%}
         </div>
     </div>
+
+        
 
     
     

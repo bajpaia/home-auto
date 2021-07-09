@@ -5,11 +5,15 @@ from threading import Thread, Event
 from time import sleep
 from copy import deepcopy
 
+
 class Relay:
+
+
     def __init__(self, pin=11, name='Switch'):
         self.name = name
         self.pin = pin
         self.active = False
+
 
     def toggle(self):
         GPIO.setmode(GPIO.BOARD)
@@ -24,6 +28,7 @@ class Relay:
             GPIO.output(self.pin, GPIO.HIGH)
             print('relay {0} on'.format(self.pin))
 
+
     def is_active(self):
         return self.active
 
@@ -34,13 +39,17 @@ class Relay:
             return True    
         return False
 
+
     def __repr__(self):
         return 'Name:{0} \n Pin:{1}'.format(self.name, self.pin)
 
 
 
 
+
 class TemperatureHumiditySensor:
+
+
     def __init__(self, pin=4, delay_mins = 1):
         self.device = Adafruit_DHT.DHT11
         self.pin = pin
@@ -48,6 +57,7 @@ class TemperatureHumiditySensor:
         self.active = True
         self.values = {"temperature":0, "humidity":0}
     
+
     def get_data(self):
         self.values["humidity"], self.values["temperature"] = Adafruit_DHT.read_retry(self.device, self.pin)
         self.values["humidity"], self.values["temperature"] = str(self.values["humidity"])+ '%', str(self.values["temperature"]) +'℃'
@@ -60,6 +70,7 @@ class TemperatureHumiditySensor:
         else:
             self.active = True 
 
+
     def __eq__(self, other):
         assert type(other) is int, "Only integer values can be compared with sensor"
         if self.pin == other:
@@ -71,13 +82,14 @@ class TemperatureHumiditySensor:
 
 
 class Room:
+
+
     def __init__(self, name="Room"):
         self.name = name
         self.code = name.lower().replace(' ', '-')
         self.relays = list()
         self.sensors = list()
 
-        
 
     def add_relays(self, relays):
         if type(relays) == type(Relay()):
@@ -95,7 +107,6 @@ class Room:
         if self.code == other:
             return True    
         return False
-
     # def __dict__(self):
     #     room_dict = deepcopy(room)
     #     room_dict.relays = [relay.__dict__ for relay in room_dict.relays]
@@ -119,6 +130,8 @@ class Room:
 
 
 class PiClient:
+
+
     def __init__(self, server_address, room):
         self.connected = False
         self.server_address = server_address

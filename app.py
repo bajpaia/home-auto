@@ -19,9 +19,9 @@ def register_user():
     return render_template('sign_up.html')
 
 
-@app.route('/test')
+@app.route('/home')
 def test():
-    return render_template('test.html', rooms = rooms)
+    return render_template('home.html', rooms = rooms)
 
 
 @app.route('/<sid>/controls')
