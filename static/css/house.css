@@ -154,10 +154,12 @@
     position: relative;
     display: inline-block;
     margin-bottom: 10px;
+    font-family: industry-inc-base, sans-serif;
 }
 
 .button 
 {
+    font-family: industry-inc-base, sans-serif;
     background-color: #4CAF50; /* Green */
     border: none;
       color: white;
