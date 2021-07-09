@@ -1,5 +1,5 @@
 from PCA9685 import PCA9685
-
+import time
 
 def move_Servo(channel, pulse):
     pwm.setServoPulse(channel,pulse) 
