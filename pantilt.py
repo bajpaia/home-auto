@@ -16,7 +16,7 @@ camera.resolution = (1024, 768)
 camera.start_preview()
 
 
-
+os.system('ls')
 #activating servo blaster (servod must be in the same folder as this script!)
 os.system('sudo ./servod')
 
