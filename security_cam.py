@@ -40,6 +40,6 @@ if __name__ == '__main__':
         servo1.move_servo(i)
         servo2.move_servo(i)
     servo1.move_servo(1500)
-    tim.sleep(1)
+    time.sleep(1)
     servo2.move_servo(1500)      
 
