@@ -28,7 +28,7 @@ class ServoMotor:
     def move_servo(self, pulse):
         self.pwm.setServoPulse(self.channel, pulse)
         self.position += pulse
-        time.sleep(0.1)
+
 
 
 if __name__ == '__main__':
@@ -38,7 +38,6 @@ if __name__ == '__main__':
     for i in range(500, 2580, 11):
 
         servo1.move_servo(i)
-        time.sleep(1)
         servo2.move_servo(i)
     servo1.move_servo(1500)
     tim.sleep(1)
