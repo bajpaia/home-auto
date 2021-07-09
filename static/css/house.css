@@ -32,7 +32,7 @@
 }
 
 .back-icon-img {
-    width: 3rem;
+    width: 3.5rem;
     height: 2.5rem;
     background: transparent;
     margin-top:20px;
@@ -114,7 +114,9 @@
 .icon-img {
 
     padding-top: 0.5em;
-    padding-right: 10%;
+    padding-right: 0.5em;
+    padding-left: 0.5em;
+    padding-bottom: 0.5em;
 }
 
 .mode-icon {
@@ -199,5 +201,7 @@
 
 .weather
 {
-    height:100px;
-}
+    margin: auto;
+    width: 105%;
+    max-width: 150%;
+  }
