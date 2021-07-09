@@ -18,7 +18,7 @@ camera.start_preview()
 
 os.system('ls ./')
 #activating servo blaster (servod must be in the same folder as this script!)
-os.system('sudo ./servod')
+os.system('sudo servod')
 
 #flipping the camera for so its not upside down
 camera.vflip = True
