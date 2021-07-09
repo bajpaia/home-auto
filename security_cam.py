@@ -37,10 +37,9 @@ if __name__ == '__main__':
     servo2 = ServoMotor(1)
 
     for i in range(500, 2580, 11):
-
         servo1.move_servo(i)
         servo2.move_servo(i)
     servo1.move_servo(1500)
-    time.sleep(1)
+    time.sleep(0.01)
     servo2.move_servo(1500)      
 
