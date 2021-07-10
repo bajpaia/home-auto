@@ -8,6 +8,8 @@ driver = ServoDriver()
 SERVER = 'http://192.168.0.201:5000'
 connected = False
 
+hor_pos = 90
+ver_pos = 90
 
 sio = socketio.Client()
 
@@ -33,14 +35,19 @@ while not connected:
 @sio.on("move_camera")
 def move(data):
     print(data)
+
     if data["direction"] =="up":
-        driver.move_by_degree(servo_vertical, -2.5)
+        ver_pos -= 2.5
+        driver.move_to_degree(servo_vertical, ver_pos)
     elif data["direction"] =="down":
-        driver.move_by_degree(servo_vertical, 2.5)
+        ver_pos += 2.5
+        driver.move_to_degree(servo_vertical, ver_pos)
     elif data["direction"] =="left":
-        driver.move_to_degree(servo_horizontal,2.5)
+        hor_pos += 2.5
+        driver.move_to_degree(servo_horizontal, hor_pos)
     else:
-        driver.move_to_degree(servo_horizontal,-2.5)
+        hor_pos -= 2.5
+        driver.move_to_degree(servo_horizontal, hor_pos)
     print('moving in {0} direction '.format(data['direction']))
 
 
