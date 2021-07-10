@@ -10,6 +10,8 @@ connected = False
 
 hor_pos = 90
 ver_pos = 90
+driver.move_to_degree(servo_vertical, ver_pos)
+driver.move_to_degree(servo_horizontal, hor_pos)
 
 sio = socketio.Client()
 
