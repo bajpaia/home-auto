@@ -40,6 +40,6 @@ def move(data):
         servo_horizontal.move_by_degree(-2.5)
     else:
         servo_horizontal.move_by_degree(2.5)
-    print('moving in {0} direction '.format(direction))
+    print('moving in {0} direction '.format(data['direction']))
 
 
