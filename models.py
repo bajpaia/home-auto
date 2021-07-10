@@ -138,7 +138,7 @@ class ServoMotor:
     
 
     def degree_to_pulse(self, degrees):
-        return degree*11.11
+        return degrees*11.11
 
     
     def move_by_degree(self, degrees):
