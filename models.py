@@ -157,7 +157,7 @@ class ServoMotor:
 
     def move_to_degree(self, degree):
         self.position = self.degree_to_pulse(degree)+500
-        self.pwm.setServoPulse(self.channel, position)
+        self.pwm.setServoPulse(self.channel, self.position)
         
 
 
