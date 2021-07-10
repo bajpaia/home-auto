@@ -36,7 +36,8 @@ while not connected:
 print(ver_pos)
 @sio.on("move_camera")
 def move(data):
-    print(ver_pos)
+    global ver_pos
+    global hor_pos
     if data["direction"] =="up":
         ver_pos -= 2.5
         driver.move_to_degree(servo_vertical, ver_pos)
