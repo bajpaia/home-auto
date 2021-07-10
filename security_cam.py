@@ -6,7 +6,11 @@ servo_horizontal = ServoMotor()
 servo_vertical = ServoMotor(1)
 SERVER = 'http://192.168.0.201:5000'
 connected = False
+
+
 sio = socketio.Client()
+
+
 
 while not connected:
     try:
@@ -17,7 +21,7 @@ while not connected:
     else:
         connected = True
         print('connected')
-        sio.emit('connection_ack', {"name":"security" }
+        sio.emit('connection_ack', {"room":"camera"})
 
 
 @sio.on('move_camera')
