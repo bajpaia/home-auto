@@ -1,9 +1,10 @@
-from models import ServoMotor
+from models import ServoDriver
 import socketio
 
 
-servo_horizontal = ServoMotor()
-servo_vertical = ServoMotor(500)
+servo_horizontal = 0
+servo_vertical = 1
+driver = ServoDriver()
 SERVER = 'http://192.168.0.201:5000'
 connected = False
 
@@ -33,13 +34,13 @@ while not connected:
 def move(data):
     print(data)
     if data["direction"] =="up":
-        servo_vertical.move_by_degree(-2.5)
+        driver.move_by_degree(servo_vertical, -2.5)
     elif data["direction"] =="down":
-        servo_vertical.move_by_degree(2.5)
+        driver.move_by_degree(servo_vertical, 2.5)
     elif data["direction"] =="left":
-        servo_horizontal.move_by_degree(-2.5)
+        sdriver.move_to_degree(servo_horizontal,2.5)
     else:
-        servo_horizontal.move_by_degree(2.5)
+        driver.move_to_degree(servo_horizontal,-2.5)
     print('moving in {0} direction '.format(data['direction']))
 
 
