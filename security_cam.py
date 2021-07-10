@@ -19,19 +19,24 @@ while not connected:
         print('connected')
         sio.emit('connection_ack', {"name":"security" }
 
-    
-@sio.on("move_camera")
-def move(data):
-    print(data)
-    if data["direction"] =="up":
-        servo_vertical.move_by_degree(-2.5)
-    elif data["direction"] =="down":
-        servo_vertical.move_by_degree(2.5)
-    elif data["direction"] =="left":
-        servo_horizontal.move_by_degree(-2.5)
-    else:
-        servo_horizontal.move_by_degree(2.5)
 
-    print('moving in {0} direction '.format(direction))
+@sio.on('move_camera')
+def move_camera(data):
+    print(data)
+
+    
+# @sio.on("move_camera")
+# def move(data):
+#     print(data)
+#     if data["direction"] =="up":
+#         servo_vertical.move_by_degree(-2.5)
+#     elif data["direction"] =="down":
+#         servo_vertical.move_by_degree(2.5)
+#     elif data["direction"] =="left":
+#         servo_horizontal.move_by_degree(-2.5)
+#     else:
+#         servo_horizontal.move_by_degree(2.5)
+
+#     print('moving in {0} direction '.format(direction))
 
 
