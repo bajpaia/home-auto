@@ -1,18 +1,18 @@
-from models import ServoMotor
+from models import ServoDriver
 import time
 
-servo_horizontal = ServoMotor(1500)
-servo_vertical = ServoMotor(1, 1500)
+driver = ServoDriver()
+servo_horizontal = 0
+servo_vertical = 1
 
 if __name__ == '__main__':
-    
-
     for i in range(500, 2580, 11):
-        servo_horizontal.move_by_pulse(i)
-        servo_vertical.move_by_pulse(i)
-    servo_horizontal.move_by_pulse(1500)
-    time.sleep(0.01)
-    servo_vertical.move_by_pulse(1500)    
+        driver.move_by_pulse(servo_horizontal,i)
+        driver.move_by_pulse(servo_vertical,i)
+
+    driver.move_by_pulse(servo_horizontal, 1500)
+    time.sleep(0.20)
+    driver.move_by_pulse(servo_vertical, 1500)    
 
     # for i in range(0, 180, 2):
     #     servo_horizontal.move_to_degree(i)

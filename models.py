@@ -128,36 +128,30 @@ class Room:
 
 
 
-class ServoMotor:
+class ServoDriver:
 
     def __init__(self, channel=0, init_pulse=1500):
         self.pwm = PCA9685(0x40, debug=False)
         self.pwm.setPWMFreq(50)
-        self.channel = channel
-        self.position = init_pulse
     
 
     def degree_to_pulse(self, degrees):
         return degrees*11.11
 
     
-    def move_by_degree(self, degrees):
+    def move_by_degree(self, channel,degrees):
         pulse = self.degree_to_pulse(degrees)
-        if (self.position + pulse) > 500 and (self.position+pulse < 2500):
-            self.pwm.setServoPulse(self.channel, pulse)
-            self.position += pulse
-            sleep(0.01)
+        self.move_by_pulse(channel, pulse)
             
 
-    def move_by_pulse(self, pulse):
-        self.pwm.setServoPulse(self.channel, pulse)
-        self.position += pulse
+    def move_by_pulse(self, channel,pulse):
+        self.pwm.setServoPulse(channel, pulse)
         sleep(0.01)
 
 
-    def move_to_degree(self, degree):
-        self.position = self.degree_to_pulse(degree)+500
-        self.pwm.setServoPulse(self.channel, self.position)
+    def move_to_degree(self, channel,degree):
+        pulse = self.degree_to_pulse(degree)+500
+        self.move_by_pulse(channel, pulse)
         
 
 
