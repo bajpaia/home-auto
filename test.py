@@ -2,7 +2,7 @@ from models import ServoMotor
 import time
 
 servo_horizontal = ServoMotor()
-servo_vertical = ServoMotor(1)
+servo_vertical = ServoMotor(1, 500)
 
 if __name__ == '__main__':
     
