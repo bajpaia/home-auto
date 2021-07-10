@@ -3,7 +3,7 @@ import socketio
 
 
 servo_horizontal = ServoMotor()
-servo_vertical = ServoMotor(1)
+servo_vertical = ServoMotor(500)
 SERVER = 'http://192.168.0.201:5000'
 connected = False
 
