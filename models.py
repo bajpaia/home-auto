@@ -146,7 +146,9 @@ class ServoDriver:
 
     def move_by_pulse(self, channel,pulse):
         self.pwm.setServoPulse(channel, pulse)
-        sleep(0.01)
+        sleep(0.5)
+        print("Pulse: {0}".format(pulse))
+
 
 
     def move_to_degree(self, channel,degree):
