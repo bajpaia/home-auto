@@ -143,22 +143,20 @@ class ServoMotor:
     
     def move_by_degree(self, degrees):
         pulse = self.degree_to_pulse(degrees)
-        if (self.position + pulse) > 500 and (self.position+pulse < 2500):
+        self.move_by_pulse(pulse)
+
+            
+    def move_by_pulse(self, pulse):
+        if (self.position + pulse) >= 500 and (self.position+pulse <= 2500):
             self.pwm.setServoPulse(self.channel, pulse)
             self.position += pulse
-            sleep(0.01)
-            
-
-    def move_by_pulse(self, pulse):
-        self.pwm.setServoPulse(self.channel, pulse)
-        self.position += pulse
-        sleep(0.01)
+            sleep(0.05)
 
 
     def move_to_degree(self, degree):
-        self.position = self.degree_to_pulse(degree)+500
-        self.pwm.setServoPulse(self.channel, self.position)
-        sleep(0.01)
+        pulse = self.degree_to_pulse(degree)+500
+        self.move_by_pulse(self.position)
+        
         
 
 
