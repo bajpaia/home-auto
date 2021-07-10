@@ -38,7 +38,7 @@ def move(data):
     elif data["direction"] =="down":
         driver.move_by_degree(servo_vertical, 2.5)
     elif data["direction"] =="left":
-        sdriver.move_to_degree(servo_horizontal,2.5)
+        driver.move_to_degree(servo_horizontal,2.5)
     else:
         driver.move_to_degree(servo_horizontal,-2.5)
     print('moving in {0} direction '.format(data['direction']))
