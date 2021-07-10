@@ -4,6 +4,8 @@ import pickle
 from threading import Thread, Event
 from time import sleep
 from copy import deepcopy
+from PCA9685 import PCA9685
+
 
 
 class Relay:
@@ -107,12 +109,8 @@ class Room:
         if self.code == other:
             return True    
         return False
-    # def __dict__(self):
-    #     room_dict = deepcopy(room)
-    #     room_dict.relays = [relay.__dict__ for relay in room_dict.relays]
-    #     return room_dict.__dict__
 
-    
+
     def load(self):
         f = open('room_config.pickle', 'rb')
         tmp_dict = pickle.load(f)
@@ -129,8 +127,40 @@ class Room:
 
 
 
-class PiClient:
 
+class ServoMotor:
+
+    def __init__(self, channel=0, init_pulse=1500):
+        self.pwm = PCA9685(0x40, debug=False)
+        self.pwm.setPWMFreq(50)
+        self.channel = channel
+        self.position = init_pulse
+    
+
+    def degree_to_pulse(self, degrees):
+        return degree*11.11
+
+    
+    def move_by_degree(self, degrees):
+        pulse = self.degree_to_pulse(degrees)
+        if (self.position + pulse) > 500 and (self.position+pulse < 2500):
+            self.pwm.setServoPulse(self.channel, pulse)
+            self.position += pulse
+            sleep(0.01)
+            
+
+    def move_to_degree(self, degree):
+        self.position = degree_to_pulse(degree)+500
+        self.pwm.setServoPulse(self.channel, position)
+        
+
+
+
+
+
+
+
+class PiClient:
 
     def __init__(self, server_address, room):
         self.connected = False

@@ -1,45 +1,37 @@
-from PCA9685 import PCA9685
-import time
-
-def move_Servo(channel, pulse):
-    pwm.setServoPulse(channel,pulse) 
-    time.sleep(0.05)  
+from models import ServoMotor
+import socketio
 
 
+servo_horizontal = ServoMotor()
+servo_vertical = ServoMotor(1)
+SERVER = 'http://192.168.0.201:5000'
+connected = False
+sio = socketio.Client()
 
-pwm = PCA9685(0x40, debug=False)
-pwm.setPWMFreq(50)
-
-
-
-class ServoMotor:
-
-    def __init__(self, channel=0, init_pulse=1500):
-        self.pwm = PCA9685(0x40, debug=False)
-        self.pwm.setPWMFreq(50)
-        self.channel = channel
-        self.position = init_pulse
-    
-
-    def degree_to_pulse(self, degrees):
-        return degree*11.11
+while not connected:
+    try:
+        sio.connect(SERVER)
+    except Exception as e:
+        print('error')
+        print(e)
+    else:
+        connected = True
+        print('connected')
+        sio.emit('connection_ack', {"name":"security" }
 
     
-    def move_servo(self, pulse):
-        self.pwm.setServoPulse(self.channel, pulse)
-        self.position += pulse
-        time.sleep(0.01)
+@sio.on("move_camera")
+def move(data):
+    print(data)
+    if data["direction"] =="up":
+        servo_vertical.move_by_degree(-2.5)
+    elif data["direction"] =="down":
+        servo_vertical.move_by_degree(2.5)
+    elif data["direction"] =="left":
+        servo_horizontal.move_by_degree(-2.5)
+    else:
+        servo_horizontal.move_by_degree(2.5)
 
+    print('moving in {0} direction '.format(direction))
 
-
-if __name__ == '__main__':
-    servo1 = ServoMotor()
-    servo2 = ServoMotor(1)
-
-    for i in range(500, 2580, 11):
-        servo1.move_servo(i)
-        servo2.move_servo(i)
-    servo1.move_servo(1500)
-    time.sleep(0.01)
-    servo2.move_servo(1500)      
 

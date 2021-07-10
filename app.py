@@ -32,6 +32,11 @@ def controls(sid):
         return redirect(url_for('test'))
 
 
+@app.route('/security')
+def security():
+    return render_template('camera.html')
+
+
 @socket.on('connection_ack')
 def acknoledge(data):
     room_name = data['name']
@@ -68,6 +73,15 @@ def disconnection_event():
     else:
         print(rooms)
     socket.emit('update_home', {'text':'{0} disconnected'.format(request.sid)})
+
+
+@socket.on("to_camera")
+def send_to_camera(data):
+    socket.emit("move_camera", data)
+
+
+
+
 
 
 if __name__ == '__main__':
