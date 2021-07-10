@@ -15,8 +15,7 @@ if __name__ == '__main__':
     # driver.move_by_pulse(servo_vertical, 1500)    
 
     for i in range(0, 180, 2):
-        servo_horizontal.move_to_degree(i)
-        servo_vertical.move_to_degree(i)
-    servo_horizontal.move_to_degree(90)
-    time.sleep(0.01)
-    servo_vertical.move_to_degree(90)     
+        driver.move_to_degree(servo_horizontal,i)
+        driver.move_to_degree(servo_vertical, i)
+    driver.move_to_degree(servo_horizontal,90)
+    driver.move_to_degree(servo_vertical, 90)    
