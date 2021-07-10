@@ -8,8 +8,8 @@ driver = ServoDriver()
 SERVER = 'http://192.168.0.201:5000'
 connected = False
 
-hor_pos = 90
-ver_pos = 90
+global hor_pos = 90
+global ver_pos = 90
 driver.move_to_degree(servo_vertical, ver_pos)
 driver.move_to_degree(servo_horizontal, hor_pos)
 
@@ -37,7 +37,6 @@ print(ver_pos)
 @sio.on("move_camera")
 def move(data):
     print(data)
-
     if data["direction"] =="up":
         ver_pos -= 2.5
         driver.move_to_degree(servo_vertical, ver_pos)
