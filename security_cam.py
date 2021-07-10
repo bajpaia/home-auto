@@ -31,7 +31,7 @@ while not connected:
 # def move_camera(data):
 #     print(data)
 
-    
+print(ver_pos)
 @sio.on("move_camera")
 def move(data):
     print(data)
