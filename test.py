@@ -1,5 +1,5 @@
 from models import ServoMotor
-
+import time
 
 servo_horizontal = ServoMotor()
 servo_vertical = ServoMotor(1)
