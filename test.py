@@ -14,7 +14,7 @@ if __name__ == '__main__':
     # time.sleep(0.01)
     # servo_vertical.move_by_pulse(1500)    
 
-    for i in range(0, 180, 2.5):
+    for i in range(0, 180, 2):
         servo_horizontal.move_to_degree(i)
         servo_vertical.move_to_degree(i)
     servo_horizontal.move_to_degree(90)
