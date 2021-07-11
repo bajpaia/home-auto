@@ -17,7 +17,7 @@ room.load()
 connected = False
 user_toggle = False  ##True, if user viewing room on browser (flag for background tasks)
 
-
+print(room.relays[0].__dict__)
 sio = socketio.Client()
 
 
