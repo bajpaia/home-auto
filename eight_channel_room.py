@@ -1,6 +1,7 @@
 
 import socketio
 import time
+import json
 import pickle
 from models import Room
 from copy import deepcopy
@@ -33,7 +34,8 @@ while not connected:
         room_dict = deepcopy(room)
         room_dict.relays = [relay.__dict__ for relay in room_dict.relays]
         room_dict = room_dict.__dict__
-        sio.emit('connection_ack', room_dict)
+        json_object = json.dumps(room_dict, indent = 4) 
+        sio.emit('connection_ack', json_object)
 
 
 @sio.on('connect')
@@ -42,7 +44,8 @@ def connection_event():
     room_dict = deepcopy(room)
     room_dict.relays = [relay.__dict__ for relay in room_dict.relays]
     room_dict = room_dict.__dict__
-    sio.emit('connection_ack', room_dict.__dict__)
+    json_object = json.dumps(room_dict, indent = 4) 
+    sio.emit('connection_ack', json_object)
 
 
 @sio.on("toggle_room_sensors")
