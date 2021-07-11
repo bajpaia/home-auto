@@ -21,7 +21,7 @@ sio = socketio.Client()
 
 def get_room():
     room_dict = deepcopy(room)
-    room_dict.relays = {[relay.__dict__ for relay in room_dict.relays]}
+    room_dict.relays = (relay.__dict__ for relay in room_dict.relays)
     room_dict = room_dict.__dict__
     print(room_dict)
     json_object = json.dumps(room_dict, indent = 4) 
