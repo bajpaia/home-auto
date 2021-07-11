@@ -49,13 +49,16 @@
 
 {% block content %}
 
-<div class="set">
-  <nav class="d-pad">
-    <a class="up" id="up" href="#" onmousedown="send_command(this.id)" onmouseup="mouseUpEvent()"></a>
-    <a class="right" id="right" href="#" onmousedown="send_command(this.id)" onmouseup="mouseUpEvent()"></a>
-    <a class="down" id="down" href="#" onmousedown="send_command(this.id)" onmouseup="mouseUpEvent()"></a>
-    <a class="left" id="left" href="#" onmousedown="send_command(this.id)" onmouseup="mouseUpEvent()"c></a>  
-  </nav>
-  
+<div class="buttons">
+      <div class="button-container" id="button-container">
+          <div class="set">
+              <nav class="d-pad">
+                  <a class="up" id="up" href="#" onmousedown="send_command(this.id)" onmouseup="mouseUpEvent()"></a>
+                  <a class="right" id="right" href="#" onmousedown="send_command(this.id)" onmouseup="mouseUpEvent()"></a>
+                  <a class="down" id="down" href="#" onmousedown="send_command(this.id)" onmouseup="mouseUpEvent()"></a>
+                  <a class="left" id="left" href="#" onmousedown="send_command(this.id)" onmouseup="mouseUpEvent()"c></a>  
+              </nav>
+        </div>
+    </div>
 </div>
 {% endblock %}
