@@ -88,6 +88,34 @@ class Room:
         f.close()
 
 
+class TemperatureHumiditySensor:
+    
+    def __init__(self, pin=4, delay_mins = 1):
+        self.device = Adafruit_DHT.DHT11
+        self.pin = pin
+        self.delay = delay_mins
+        self.active = True
+        self.values = {"temperature":0, "humidity":0}
+
+
+    def get_data(self):
+        self.values["humidity"], self.values["temperature"] = Adafruit_DHT.read_retry(self.device, self.pin)
+        self.values["humidity"], self.values["temperature"] = str(self.values["humidity"])+ '%', str(self.values["temperature"]) +'℃'
+        return self.values
+
+
+    def toggle(self):
+        if self.active:
+            self.active = False
+        else:
+            self.active = True 
+
+
+    def __eq__(self, other):
+        assert type(other) is int, "Only integer values can be compared with sensor"
+        if self.pin == other:
+            return True    
+        return False
 
 
 
