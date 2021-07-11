@@ -1,6 +1,8 @@
 .set {
+    position: relative;
     overflow: hidden;
-    padding: 30px;
+    padding: 45px;
+
     text-align: center;
 }
 .set .d-pad {
@@ -225,3 +227,24 @@
 .d-pad.right a.right:before {
     border-left-color: #333;
 }
+
+
+.d-pad-container {
+  
+
+    border: 1px solid seashell;
+    min-height: 75px;
+    height: 30%;
+    text-align: center;
+    
+  }
+
+  .stream-container {
+  
+
+    border: 1px solid seashell;
+    min-height: 75px;
+    height: 60%;
+    text-align: center;
+    
+  }
