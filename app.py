@@ -39,6 +39,7 @@ def security():
 
 @socket.on('connection_ack')
 def acknoledge(data):
+    print(data)
     room_name = data['name']
     socket.emit('update_home', data)
     data['code'] = request.sid
