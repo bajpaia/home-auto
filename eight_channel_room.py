@@ -21,6 +21,13 @@ user_toggle = False  ##True, if user viewing room on browser (flag for backgroun
 sio = socketio.Client()
 
 
+def get_room():
+    room_dict = deepcopy(room)
+    room_dict.relays = [relay.__dict__ for relay in room_dict.relays]
+    room_dict = room_dict.__dict__
+    json_object = json.dumps(room_dict, indent = 4) 
+    return json_object
+
 
 while not connected:
     try:
@@ -31,21 +38,15 @@ while not connected:
     else:
         connected = True
         print('connected')
-        room_dict = deepcopy(room)
-        room_dict.relays = [relay.__dict__ for relay in room_dict.relays]
-        room_dict = room_dict.__dict__
-        json_object = json.dumps(room_dict, indent = 4) 
-        sio.emit('connection_ack', json_object)
+        room_json = get_room()
+        sio.emit('connection_ack', room_json)
 
 
 @sio.on('connect')
 def connection_event():
-    print("connected sending ack to server")
-    room_dict = deepcopy(room)
-    room_dict.relays = [relay.__dict__ for relay in room_dict.relays]
-    room_dict = room_dict.__dict__
-    json_object = json.dumps(room_dict, indent = 4) 
-    sio.emit('connection_ack', json_object)
+    print("connected sending ack to server") 
+    room_json = get_room()
+    sio.emit('connection_ack', room_json)
 
 
 @sio.on("toggle_room_sensors")
