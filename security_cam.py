@@ -34,7 +34,7 @@ while not connected:
 #     print(data)
 
 print(ver_pos)
-@sio.on("move_camera")
+@sio.on("move_camera")   ## BUG -  Limit ver_pos and hor_pos to 0 - 180
 def move(data):
     global ver_pos
     global hor_pos

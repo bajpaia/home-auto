@@ -13,7 +13,20 @@
         {
             console.log("connected");
         });
-        function send_command(direction)
+
+      var interval;
+      function send_command(direction) 
+      {
+          interval = setInterval(emit_direction, 1, direction);
+      }
+
+      function mouseUpEvent()
+       {
+          clearInterval(interval);  
+        }
+
+
+        function emit_direction(direction)
         {
             socket.emit("to_camera", {"direction":direction});
         }
@@ -27,10 +40,10 @@
 
 <div class="set">
   <nav class="d-pad">
-    <a class="up" id="up" href="#" onmousedown="send_command(this.id)"></a>
-    <a class="right" id="right" href="#" onmousedown="send_command(this.id)"></a>
-    <a class="down" id="down" href="#" onmousedown="send_command(this.id)"></a>
-    <a class="left" id="left" href="#" onmousedown="send_command(this.id)"></a>  
+    <a class="up" id="up" href="#" onmousedown="send_command(this.id)" onmouseup="mouseUpEvent()"></a>
+    <a class="right" id="right" href="#" onmousedown="send_command(this.id)" onmouseup="mouseUpEvent()"></a>
+    <a class="down" id="down" href="#" onmousedown="send_command(this.id)" onmouseup="mouseUpEvent()"></a>
+    <a class="left" id="left" href="#" onmousedown="send_command(this.id)" onmouseup="mouseUpEvent()"c></a>  
   </nav>
   
 </div>

@@ -10,7 +10,6 @@ from PCA9685 import PCA9685
 
 class Relay:
 
-
     def __init__(self, pin=11, name='Switch'):
         self.name = name
         self.pin = pin
@@ -47,10 +46,7 @@ class Relay:
 
 
 
-
-
 class TemperatureHumiditySensor:
-
 
     def __init__(self, pin=4, delay_mins = 1):
         self.device = Adafruit_DHT.DHT11
@@ -79,12 +75,9 @@ class TemperatureHumiditySensor:
             return True    
         return False
 
-    
-
 
 
 class Room:
-
 
     def __init__(self, name="Room"):
         self.name = name
@@ -146,7 +139,7 @@ class ServoDriver:
 
     def move_by_pulse(self, channel,pulse):
         self.pwm.setServoPulse(channel, pulse)
-        sleep(0.5)
+        sleep(0.01)
         print("Pulse: {0}".format(pulse))
 
 
@@ -155,11 +148,6 @@ class ServoDriver:
         pulse = self.degree_to_pulse(degree)+500
         self.move_by_pulse(channel, pulse)
         
-
-
-
-
-
 
 
 class PiClient:
@@ -178,5 +166,10 @@ class PiClient:
                 self.connected = True
                 print('connected')
                 self.sio.emit('connection_ack', self.room.__dict__)
+
+
+# class SecurityCamera:
+
+#     def __init__(self):
 
             
