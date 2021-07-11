@@ -32,8 +32,8 @@ while not connected:
         print('connected')
         room_dict = deepcopy(room)
         room_dict.relays = [relay.__dict__ for relay in room_dict.relays]
-        print(type(room_dict.relays[0]))
-        sio.emit('connection_ack', room_dict.__dict__)
+        room_dict = room_dict.__dict__
+        sio.emit('connection_ack', room_dict)
 
 
 @sio.on('connect')
@@ -41,6 +41,7 @@ def connection_event():
     print("connected sending ack to server")
     room_dict = deepcopy(room)
     room_dict.relays = [relay.__dict__ for relay in room_dict.relays]
+    room_dict = room_dict.__dict__
     sio.emit('connection_ack', room_dict.__dict__)
 
 
