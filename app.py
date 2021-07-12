@@ -84,7 +84,7 @@ def disconnection_event():
 
 @socket.on('camera_stream')
 def get_stream(data):
-    print(data)
+    socket.emit('cv-data', data)
 
 
 @socket.on('to_camera')

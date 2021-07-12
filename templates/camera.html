@@ -9,6 +9,8 @@
     <script>
 
         const socket = io.connect('http://192.168.0.201:5000');
+        const image_elem = document.getElementById("streamer-image");
+        
         socket.on("connect", function()
         {
             console.log("connected");
@@ -16,6 +18,11 @@
             console.log("startring cam");
         });
 
+        socket.on('cv-data', function(data) 
+        {
+        console.log(data);
+32      image_elem.src = data.data;
+33      });
 
         window.mobileCheck = function() 
         {
@@ -44,6 +51,9 @@
             socket.emit("to_camera", {"direction":direction});
         }
 
+
+        
+
     </script>
 
 
@@ -52,7 +62,7 @@
 {% block content %}
 
     <div class="stream-container" id="stream-container">
-        <canvas class="video-stream" width="600" height="480" style="" ></canvas>
+        <img id="streamer-image" src="">
     </div>
       <div class="d-pad-container" id="d-pad-container">
           <div class="set">

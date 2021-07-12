@@ -29,8 +29,9 @@ def start_camera():
             time.sleep(2)
 
             for frame in camera.capture_continuous(stream, 'jpeg', use_video_port=True):
-                data = base64.b64encode(frame)              # convert to base64 format
-                sio.emit('camera_stram', data)    
+                data = base64.b64encode(frame).decode('utf-8')
+                data = "data:image/jpeg;base64,{}".format(data)              # convert to base64 format
+                sio.emit('camera_stram', {"data": data})    
                 time.sleep(0.04)
                 print('sending frames')
     except Exception as e:
