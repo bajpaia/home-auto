@@ -1,7 +1,7 @@
 .set {
     position: relative;
     overflow: hidden;
-    padding: 45px;
+    padding: 1rem;
 
     text-align: center;
 }
@@ -244,14 +244,16 @@
 
     border: 1px solid seashell;
     min-height: 75px;
-    height: 60%;
+    height: 55%;
     text-align: center;
     
   }
 
   .stream-window
   {
+    margin-top: 1.5em;
     border-radius: 3em;
+    max-height: 445px;
   }
 
   .header {
@@ -282,7 +284,10 @@
 
   .row
   {
-      margin-top: 5%;
+      height: 2rem;
+      padding: 1%;
+
+
   }
   
   
@@ -307,4 +312,10 @@
     background: transparent;
     margin-top:20px;
     margin-left: 20px;
+  }
+
+  .frame-container
+  {
+   
+    max-height: 100%;
   }
