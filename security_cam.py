@@ -35,7 +35,7 @@ def start_camera():
                 stream.seek(0)
                 stream.truncate()
                 print('sending frames')
-    except e:
+    except Exception as e:
         print(e)
 
 
