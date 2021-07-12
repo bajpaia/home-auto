@@ -1,5 +1,7 @@
 from models import ServoDriver
 import socketio
+import picamera
+import io
 
 
 servo_horizontal = 0
@@ -8,6 +10,7 @@ driver = ServoDriver()
 SERVER = 'http://192.168.0.201:5000'
 connected = False
 
+
 hor_pos = 90
 ver_pos = 90
 driver.move_to_degree(servo_vertical, ver_pos)
@@ -15,6 +18,30 @@ driver.move_to_degree(servo_horizontal, hor_pos)
 
 sio = socketio.Client()
 
+
+
+def start_camera():
+    try:
+        with picamera.PiCamera() as camera:
+            print('cam started')
+            camera.resolution = (640, 480)
+            time.sleep(2)
+            stream = io.BytesIO()
+
+            for frame in camera.capture_continuous(stream, 'jpeg', use_video_port=True):
+                print(stream.tell())
+                stream.seek(0)
+                sio.emit('camera_stream', stream.read())
+                stream.seek(0)
+                stream.truncate()
+                print('sending frames')
+    except e:
+        print(e)
+
+
+@sio.on("toggle_room_sensors")
+def toggle_sensors():
+    task = sio.start_background_task(start_camera)
 
 
 while not connected:
@@ -28,10 +55,6 @@ while not connected:
         print('connected')
         sio.emit('connection_ack', {"name":"camera"})
 
-
-# @sio.on('move_camera')
-# def move_camera(data):
-#     print(data)
 
 print(ver_pos)
 @sio.on("move_camera")   ## BUG -  Limit ver_pos and hor_pos to 0 - 180

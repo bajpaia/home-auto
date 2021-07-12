@@ -76,6 +76,11 @@ def disconnection_event():
     socket.emit('update_home', {'text':'{0} disconnected'.format(request.sid)})
 
 
+@socket_on('camera_stream')
+def get_stream(data):
+    print(data)
+
+
 @socket.on('to_camera')
 def send_to_camera(data):
     socket.emit("move_camera", data)
