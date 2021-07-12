@@ -1,7 +1,5 @@
 from models import ServoDriver
 import socketio
-import cv2
-import base64
 import time
 
 
@@ -19,11 +17,6 @@ driver.move_to_degree(servo_horizontal, hor_pos)
 
 sio = socketio.Client(logger = True,)
 
-
-
-
-
-
 while not connected:
     try:
         sio.connect(SERVER)
@@ -34,47 +27,7 @@ while not connected:
         connected = True
         print('connected')
         sio.sleep(2)
-        
-
-
-
-def start_camera():
-    try:
-        video_capture = cv2.VideoCapture(0)
-        video_capture.set(cv2.CAP_PROP_FPS, 20)
-        video_capture.set(3, 640)
-        video_capture.set(4, 480)
-        time.sleep(2)
-        while True:
-            ret, frame = video_capture.read()
-            data = base64.b64encode(frame)
-            data = "data:image/jpeg;base64,{}".format(data)              # convert to base64 format
-            try:
-                print(len(data))
-                sio.emit('camera_stram', {"data": data})    
-                sio.sleep(2)
-                print('sending frames')
-            except Exception as e:
-                print(e)
-                try:
-                    sio.connect(SERVER)
-                except Exception as e:
-                    print('error')
-                    print(e)
-
-    except Exception as e:
-        print(e)
     
-
-
-@sio.on("start_camera")
-def toggle_camera(data):
-    print("starting camera in background")
-    sio.sleep(2)
-    task = sio.start_background_task(start_camera)
-    
-
-
 
 print(ver_pos)
 @sio.on("move_camera")   ## BUG -  Limit ver_pos and hor_pos to 0 - 180
