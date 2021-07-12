@@ -55,6 +55,11 @@ def start_camera():
                 print('sending frames')
             except Exception as e:
                 print(e)
+                 try:
+                    sio.connect(SERVER)
+                except Exception as e:
+                    print('error')
+                    print(e)
 
     except Exception as e:
         print(e)

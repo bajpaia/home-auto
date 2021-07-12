@@ -77,9 +77,10 @@ def disconnection_event():
     print('Client disconnected {0}'.format(disconnected_client))
     if disconnected_client in rooms:
         del rooms[request.sid]
+        socket.emit('update_home', {'text':'{0} disconnected'.format(request.sid)})
     else:
         print(rooms)
-    socket.emit('update_home', {'text':'{0} disconnected'.format(request.sid)})
+    
 
 
 @socket.on('camera_stream')
