@@ -20,18 +20,6 @@ driver.move_to_degree(servo_horizontal, hor_pos)
 sio = socketio.Client()
 
 
-while not connected:
-    try:
-        sio.connect(SERVER)
-    except Exception as e:
-        print('error')
-        print(e)
-    else:
-        connected = True
-        print('connected')
-        sio.emit('connection_ack', {"name":"camera"})
-        sio.sleep(2)
-        task = sio.start_background_task(start_camera)
 
 
 def start_camera():
@@ -52,6 +40,20 @@ def start_camera():
 
     except Exception as e:
         print(e)
+
+while not connected:
+    try:
+        sio.connect(SERVER)
+    except Exception as e:
+        print('error')
+        print(e)
+    else:
+        connected = True
+        print('connected')
+        sio.emit('connection_ack', {"name":"camera"})
+        sio.sleep(2)
+        task = sio.start_background_task(start_camera)
+
     
 
 
