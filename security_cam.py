@@ -47,7 +47,7 @@ def start_camera():
         time.sleep(2)
         while True:
             ret, frame = video_capture.read()
-            data = base64.b64encode(frame).decode('utf-8')
+            data = base64.b64encode(frame)
             data = "data:image/jpeg;base64,{}".format(data)              # convert to base64 format
             try:
                 print(len(data))
