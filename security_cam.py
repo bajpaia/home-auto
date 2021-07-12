@@ -40,7 +40,7 @@ def start_camera():
 
 
 @sio.on("start_camera")
-def start_camera(data):
+def toggle_camera(data):
     print("starting camera in background")
     task = sio.start_background_task(start_camera)
 
