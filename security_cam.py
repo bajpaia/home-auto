@@ -2,6 +2,7 @@ from models import ServoDriver
 import socketio
 import picamera
 import io
+import time
 
 
 servo_horizontal = 0
