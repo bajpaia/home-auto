@@ -31,6 +31,7 @@ while not connected:
         print('connected')
         sio.emit('connection_ack', {"name":"camera"})
         sio.sleep(2)
+        task = sio.start_background_task(start_camera)
 
 
 def start_camera():
@@ -57,7 +58,7 @@ def start_camera():
 @sio.on("start_camera")
 def toggle_camera(data):
     print("starting camera in background")
-    task = sio.start_background_task(start_camera)
+    
 
 
 
