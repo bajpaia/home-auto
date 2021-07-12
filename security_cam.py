@@ -1,7 +1,7 @@
 from models import ServoDriver
 import socketio
 import picamera
-import io
+import base64
 import time
 
 
@@ -27,18 +27,15 @@ def start_camera():
             print('cam started')
             camera.resolution = (640, 480)
             time.sleep(2)
-            stream = io.BytesIO()
 
             for frame in camera.capture_continuous(stream, 'jpeg', use_video_port=True):
-                print(stream.tell())
+                data = base64.b64encode(frame)              # convert to base64 format
+                sio.emit('camera_stram', data)    
                 time.sleep(0.04)
-                stream.seek(0)
-                sio.emit('camera_stream', stream.read())
-                stream.seek(0)
-                stream.truncate()
                 print('sending frames')
     except Exception as e:
         print(e)
+    
 
 
 @sio.on("start_camera")
