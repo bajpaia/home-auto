@@ -26,6 +26,8 @@ def start_camera():
     try:
         video_capture = cv2.VideoCapture(0)
         video_capture.set(cv2.CAP_PROP_FPS, 20)
+        video_capture.set(3, 640)
+        video_capture.set(4, 480)
         time.sleep(2)
         while True:
             ret, frame = video_capture.read()
