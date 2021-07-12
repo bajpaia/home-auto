@@ -12,7 +12,8 @@
         socket.on("connect", function()
         {
             console.log("connected");
-            socket.emit("toggle_camera", {"data":"toggle_camera"})
+            socket.emit("toggle_camera", {"data":"toggle_camera"});
+            console.log("startring cam");
         });
 
 

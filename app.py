@@ -66,6 +66,7 @@ def process_request(data):
 
 @socket.on("toggle_camera")
 def toggle_camera(data):
+    print("Toggle camera")
     socket.emit("start_camera", data, broadcast= True)
 
 
@@ -81,7 +82,7 @@ def disconnection_event():
     socket.emit('update_home', {'text':'{0} disconnected'.format(request.sid)})
 
 
-@socket_on('camera_stream')
+@socket.on('camera_stream')
 def get_stream(data):
     print(data)
 
