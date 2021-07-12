@@ -64,6 +64,11 @@ def process_request(data):
     print(data)
     socket.emit('execute_request', data,room = data['code'])
 
+@socket.on("toggle_camera")
+def toggle_camera(data):
+    socket.emit("start_camera", data, broadcast= True)
+
+
 
 @socket.on('disconnect')
 def disconnection_event():

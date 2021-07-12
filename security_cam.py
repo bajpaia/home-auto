@@ -39,7 +39,7 @@ def start_camera():
         print(e)
 
 
-@sio.on("toggle_room_sensors")
+@sio.on("start_camera")
 def toggle_sensors():
     task = sio.start_background_task(start_camera)
 
