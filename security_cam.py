@@ -30,26 +30,27 @@ while not connected:
         connected = True
         print('connected')
         sio.emit('connection_ack', {"name":"camera"})
+        sio.sleep(2)
 
 
-# def start_camera():
-#     try:
-#         video_capture = cv2.VideoCapture(0)
-#         video_capture.set(cv2.CAP_PROP_FPS, 20)
-#         time.sleep(2)
-#         while True:
-#             ret, frame = video_capture.read()
-#             data = base64.b64encode(frame).decode('utf-8')
-#             data = "data:image/jpeg;base64,{}".format(data)              # convert to base64 format
-#             try:
-#                 sio.emit('camera_stram', {"data": data})    
-#                 sio.sleep(2)
-#                 print('sending frames')
-#             except Exception as e:
-#                 print(e)
+def start_camera():
+    try:
+        video_capture = cv2.VideoCapture(0)
+        video_capture.set(cv2.CAP_PROP_FPS, 20)
+        time.sleep(2)
+        while True:
+            ret, frame = video_capture.read()
+            data = base64.b64encode(frame).decode('utf-8')
+            data = "data:image/jpeg;base64,{}".format(data)              # convert to base64 format
+            try:
+                sio.emit('camera_stram', {"data": data})    
+                sio.sleep(2)
+                print('sending frames')
+            except Exception as e:
+                print(e)
 
-#     except Exception as e:
-#         print(e)
+    except Exception as e:
+        print(e)
     
 
 
