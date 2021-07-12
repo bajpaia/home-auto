@@ -248,3 +248,9 @@
     text-align: center;
     
   }
+
+  .stream-window
+  {
+    padding: 7%;
+    border-radius: 3em;
+  }

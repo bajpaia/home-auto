@@ -9,9 +9,10 @@ rooms = dict()
 
 
 
-camera = cv2.VideoCapture("tcp://192.168.0.174:8554")
+
 
 def gen_frames():  
+    camera = cv2.VideoCapture("tcp://192.168.0.174:8554")
     while True:
         success, frame = camera.read()  # read the camera frame
         if not success:
