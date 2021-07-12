@@ -31,6 +31,7 @@ def start_camera():
 
             for frame in camera.capture_continuous(stream, 'jpeg', use_video_port=True):
                 print(stream.tell())
+                time.sleep(0.04)
                 stream.seek(0)
                 sio.emit('camera_stream', stream.read())
                 stream.seek(0)
