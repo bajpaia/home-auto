@@ -33,7 +33,6 @@ while not connected:
     else:
         connected = True
         print('connected')
-        sio.emit('connection_ack', {"name":"camera"})
         sio.sleep(2)
         
 
