@@ -59,15 +59,30 @@
 {% endblock %}
 
 {% block content %}
+    <ul class="header">
+        <li class="back-button">
+            <div class="back-icon">
+            </div>
+        </li>
+        <li class="edit-button">
+             <div class="edit-icon">
+                <a href="{{url_for('home')}}">
+                <img class="edit-icon-img" src="{{url_for('static', filename='image/home.png')}}" alt="">
+                </a>
+            </div>
+        </li>
+      <li class="title-profile"><p>My House</p></li>
+    </ul>
 
     <div class="stream-container" id="stream-container">
         <div class="container">
-    <div class="row">
-        <div class="col-lg-8  offset-lg-2">
-            <img class="stream-window" src="{{ url_for('video_feed') }}" width="80%">
+            <div class="row">
+                <div class="col-lg-8  offset-lg-2">
+                    <img class="stream-window" src="{{ url_for('video_feed') }}" width="80%">
+                </div>
+            </div>
         </div>
-    </div>
-</div>
+    
     </div>
       <div class="d-pad-container" id="d-pad-container">
           <div class="set">
@@ -78,5 +93,6 @@
                   <a class="left" id="left" href="#" onmousedown="send_command(this.id)" onmouseup="mouseUpEvent()"c></a>  
               </nav>
         </div>
+    </div>
     </div>
 {% endblock %}

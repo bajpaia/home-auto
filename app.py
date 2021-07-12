@@ -40,7 +40,7 @@ def register_user():
 
 
 @app.route('/home')
-def test():
+def home():
     return render_template('home.html', rooms = rooms)
 
 
