@@ -31,7 +31,7 @@ def start_camera():
             data = base64.b64encode(frame).decode('utf-8')
             data = "data:image/jpeg;base64,{}".format(data)              # convert to base64 format
             sio.emit('camera_stram', {"data": data})    
-            time.sleep(0.04)
+            sio.sleep(0.04)
             print('sending frames')
     except Exception as e:
         print(e)
