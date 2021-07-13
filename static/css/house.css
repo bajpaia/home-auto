@@ -213,7 +213,7 @@ background: linear-gradient(#073,#0fa);
 
 .name-button
 {
-  width:115px;
+  width:auto;
   min-width: 115px;
   background-color: gray;
   color:white;

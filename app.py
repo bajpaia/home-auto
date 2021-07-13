@@ -7,11 +7,21 @@ import cv2
 app = Flask(__name__)
 socket = SocketIO(app, async_mode='threading')
 rooms = dict()
+camera_active = False
+
+def cam_toggle():
+    global camera_active
+    if camera_active:
+        camera_active = False
+        print("off")
+    else:
+        camera_active = True
+        print("on")
 
 
 def gen_frames():  
     camera = cv2.VideoCapture("tcp://192.168.0.174:8554")
-    while True:
+    while camera_active:
         success, frame = camera.read()  # read the camera frame
         if not success:
             break
@@ -47,8 +57,20 @@ def edit_home():
         return render_template('edit_home.html', rooms = rooms)
     for room in rooms:
         name = request.form.get(room)
-        socket.emit("change_room_name", {"name":name}, room=room)
-    return redirect('home', rooms=rooms)
+        if len(name) >0:
+            socket.emit("change_room_name", {"name":name}, room=room)
+    return redirect(url_for('home'))
+
+@app.route('/<sid>/edit_room', methods=['GET', 'POST'])
+def edit_room(sid):
+    if request.method == 'GET':
+        return render_template('edit_room.html', room = rooms[sid])
+    room = rooms[sid]
+    for relay in room['relays']:
+        name = request.form.get(relay['pin'])
+        if name:
+            socket.emit("change_relay_names", {"name":name, "relay": relay.pin}, room=sid)
+    return redirect(url_for('controls', sid=sid))
 
 
 @app.route('/<sid>/controls')
@@ -56,7 +78,7 @@ def controls(sid):
     if request.method == 'GET':
         if sid in rooms:
             return render_template('room.html', room=rooms[sid])
-        return redirect(url_for('test'))
+        return redirect(url_for('home'))
 
 
 @app.route('/security')
@@ -94,7 +116,8 @@ def process_request(data):
 @socket.on("toggle_camera")
 def toggle_camera(data):
     print("Toggle camera")
-    socket.emit("start_camera", data, broadcast= True)
+    cam_toggle()
+
 
 
 

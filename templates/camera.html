@@ -17,11 +17,13 @@
             socket.emit("toggle_camera", {"data":"toggle_camera"});
             console.log("startring cam");
         });
-
-        socket.on('cv-data', function(data) 
+        socket.on("disconnect", function()
         {
-        console.log(data);
-33      });
+            console.log("connected");
+            socket.emit("toggle_camera", {"data":"toggle_camera"});
+            console.log("stopping cam");
+        });
+
 
         window.mobileCheck = function() 
         {

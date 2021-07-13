@@ -49,7 +49,9 @@
         </li>
         <li class="edit-button">
              <div class="edit-icon">
+             <a href={{url_for('edit_home')}}>
                 <img class="edit-icon-img" src="{{url_for('static', filename='image/edit.png')}}" alt="">
+            </a>
             </div>
         </li>
       <li class="title-profile"><p>My House</p></li>
@@ -112,8 +114,9 @@
             <div class="icon-container">
                 <div class="mode-icon">
                     <div class="icon-img">
-                    <!-- weather widget start --><a target="_blank" href="https://www.booked.net/weather/london-18114"><img class="weather"src="https://w.bookcdn.com/weather/picture/31_18114_1_1_34495e_250_2c3e50_ffffff_ffffff_1_2071c9_ffffff_0_6.png?scode=124&domid=w209&anc_id=88331"  alt="booked.net"/></a><!-- weather widget end -->
-                    </div>
+
+                    <script src="weather.js"></script>
+                    <!-- weather widget start --><a target="_blank" href="https://www.booked.net/weather/gurgaon-18508"><img class="weather" src="https://w.bookcdn.com/weather/picture/31_18508_1_1_34495e_250_2c3e50_ffffff_ffffff_1_2071c9_ffffff_0_6.png?scode=124&domid=w209&anc_id=90567"  alt="booked.net"/></a><!-- weather widget end --></div>
                 </div>
             </div>
         </div>
