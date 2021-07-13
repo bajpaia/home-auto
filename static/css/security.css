@@ -251,9 +251,9 @@
 
   .stream-window
   {
-    margin-top: 1.5em;
     border-radius: 3em;
     max-height: 445px;
+    max-width: 600px;
   }
 
   .header {

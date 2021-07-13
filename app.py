@@ -3,6 +3,8 @@ from flask_socketio import *
 import  flask_socketio
 import cv2
 
+print(cv2.__version__)
+
 app = Flask(__name__)
 socket = SocketIO(app, async_mode='threading')
 rooms = dict()
