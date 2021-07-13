@@ -51,6 +51,8 @@ def register_user():
 def home():
     return render_template('home.html', rooms = rooms)
 
+
+
 @app.route('/edit_home', methods=['GET', 'POST'])
 def edit_home():
     if request.method == 'GET':
@@ -60,6 +62,7 @@ def edit_home():
         if len(name) >0:
             socket.emit("change_room_name", {"name":name}, room=room)
     return redirect(url_for('home'))
+
 
 @app.route('/<sid>/edit_room', methods=['GET', 'POST'])
 def edit_room(sid):

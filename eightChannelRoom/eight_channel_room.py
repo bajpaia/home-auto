@@ -30,7 +30,6 @@ while not connected:
     try:
         sio.connect(SERVER)
     except Exception as e:
-        print('error')
         print(e)
     else:
         connected = True
@@ -47,7 +46,6 @@ def connection_event():
 
 @sio.on('change_room_name')
 def name_change(data):
-    print(data)
     room.name = data["name"]
     room.save()
     room_json = get_room()
@@ -61,7 +59,6 @@ def toggle_sensors():
 
 @sio.on('execute_request')
 def execute(data):
-    print(data)
     for relay in room.relays:
         if relay.pin == int(data['relay']):
             relay.toggle()
@@ -69,17 +66,14 @@ def execute(data):
 
 
 @sio.on('change_relay_names')
-def change_name_relay(data):
-    
+def change_name_relay(data):   
     for relay in room.relays:
         if data['relay']==relay.pin and len(data['name'])>0:
-            print(data)
             relay.name = data['name']
 
     room.save()
     room_json = get_room()
     sio.emit('connection_ack', room_json)
-    print('update room')
 
 
 

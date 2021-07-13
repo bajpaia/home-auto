@@ -114,10 +114,8 @@
 .icon-img {
 
   padding-top: 1em;
-  padding-right: 0.5em;
   padding-bottom: 0.5em;
-  height: 140px;
-  width: 200px;
+  height: 160px;
 }
 
 .mode-icon {
@@ -203,12 +201,12 @@ background: linear-gradient(#073,#0fa);
 
 .weather
 {
-  margin: auto;
+  margin: 5%;
   width: auto;
-  max-width: 80%;
+  max-width: 100%;
   height: 80%;
-  padding-left: 10%;
-  padding-top: 1em;
+
+  border-radius: 10px;
 }
 
 .name-button
