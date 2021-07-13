@@ -45,6 +45,14 @@ def connection_event():
     room_json = get_room()
     sio.emit('connection_ack', room_json)
 
+@sio.on('change_room_name')
+def connection_event(data):
+    print("connected sending ack to server") 
+    room.name = data["name"]
+    room.save()
+    room_json = get_room()
+    sio.emit('connection_ack', room_json)
+
 
 @sio.on("toggle_room_sensors")
 def toggle_sensors():
