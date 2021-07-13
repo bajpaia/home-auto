@@ -70,9 +70,11 @@ def execute(data):
 
 @sio.on('change_relay_names')
 def change_name_relay(data):
+    print(data)
     for relay in room.relays:
         if data['pin']==relay.pin and len(data['name'])>0:
             relay.name = data['name']
+
     room.save()
     room_json = get_room()
     sio.emit('connection_ack', room_json)
