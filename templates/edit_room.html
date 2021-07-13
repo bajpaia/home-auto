@@ -49,17 +49,17 @@
     </script>
 
     <script>
-    function changeButtonText(button)
-    {     
-        input_box = "input-text-" + button
-        console.log(input_box);
-        document.getElementById(button).innerHTML = document.getElementById(input_box).value;
-    }
+        function changeButtonText(button)
+        {     
+            input_box = "input-text-" + button
+            console.log(input_box);
+            document.getElementById(button).innerHTML = document.getElementById(input_box).value;
+        }
 
-    function submit_form(){
-        document.getElementById('edit_room').submit();
-    }
-</script>
+        function submit_form(){
+            document.getElementById('edit_room').submit();
+        }
+    </script>
 
 
  
@@ -160,12 +160,12 @@
         <form method="POST" id="edit_room">
             {%for relay in room.relays%}
             <div class="access-button" id="buttons">
-                <button class="button" "btn-selection" id="{{relay.pin}}"  onclick="send_command(this.id);"> 
+                <button type="button" class="button" "btn-selection" id="{{relay.pin}}"  onclick="send_command(this.id);"> 
                 {{relay.name}}
                 </button>
                 <br>
                 <br>
-                <input class="name-button" type="text" name ='{{relay.pin}}' id= "input-text-'{{relay.pin}}'" onchange="changeButtonText('{{relay.pin}}')">
+                <input class="name-button" type="text" name ='{{relay.pin}}' id= "input-text-{{relay.pin}}" onchange="changeButtonText('{{relay.pin}}')">
             </div>
             {%endfor%}
         </form>

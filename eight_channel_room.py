@@ -72,7 +72,7 @@ def execute(data):
 def change_name_relay(data):
     print(data)
     for relay in room.relays:
-        if data['pin']==relay.pin and len(data['name'])>0:
+        if data['relay']==str(relay.pin) and len(data['name'])>0:
             relay.name = data['name']
 
     room.save()

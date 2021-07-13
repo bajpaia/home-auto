@@ -67,9 +67,10 @@ def edit_room(sid):
         return render_template('edit_room.html', room = rooms[sid])
     room = rooms[sid]
     for relay in room['relays']:
-        name = request.form.get(relay['pin'])
+        name = request.form.get(str(relay['pin']))
         if name:
-            socket.emit("change_relay_names", {"name":name, "relay": relay.pin}, room=sid)
+            print(name)
+            socket.emit("change_relay_names", {"name":name, "relay": int(relay['pin'])}, room=sid)
     return redirect(url_for('controls', sid=sid))
 
 
@@ -111,6 +112,7 @@ def process_sensor_data(data):
 @socket.on('process_request')
 def process_request(data):
     print(data)
+    print('sending request')
     socket.emit('execute_request', data,room = data['code'])
 
 @socket.on("toggle_camera")
