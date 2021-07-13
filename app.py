@@ -41,6 +41,10 @@ def register_user():
 def home():
     return render_template('home.html', rooms = rooms)
 
+@app.route('/edit_home')
+def edit_home():
+    return render_template('edit_home.html', rooms = rooms)
+
 
 @app.route('/<sid>/controls')
 def controls(sid):
