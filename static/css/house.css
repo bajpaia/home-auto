@@ -205,13 +205,16 @@ background: linear-gradient(#073,#0fa);
 {
   margin: auto;
   width: auto;
-  max-width: 120%;
-  height: 100%;
+  max-width: 80%;
+  height: 80%;
+  padding-left: 10%;
+  padding-top: 1em;
 }
 
 .name-button
 {
-
+  width:115px;
+  min-width: 115px;
   background-color: gray;
   color:white;
   padding: 20px;

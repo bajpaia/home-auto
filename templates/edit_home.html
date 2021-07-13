@@ -36,7 +36,18 @@
         });
     </script>
 
+<script>
+    function changeButtonText(button)
+    {     
+        input_box = "input-text-" + button
+        console.log(input_box);
+        document.getElementById(button).innerHTML = document.getElementById(input_box).value;
+    }
 
+    function submit_form(){
+        document.getElementById('edit_home').submit();
+    }
+</script>
 
  
     
@@ -49,10 +60,10 @@
         </li>
         <li class="edit-button">
              <div class="edit-icon">
-                <img class="edit-icon-img" src="{{url_for('static', filename='image/edit.png')}}" alt="">
+                <input type="image" class="edit-icon-img" src="{{url_for('static', filename='image/done.png')}}" alt="" onclick="submit_form()">
             </div>
         </li>
-      <li class="title-profile"><p>My House</p></li>
+      <li class="title-profile"><p>Edit</p></li>
     </ul>
 
        <div class="add-button" id="controls">
@@ -112,9 +123,7 @@
             <div class="icon-container">
                 <div class="mode-icon">
                     <div class="icon-img">
-                    <!-- weather widget start -->
-                    <a target="_blank" href="https://www.booked.net/weather/gurgaon-18508">
-                    <img class="weather" src="https://w.bookcdn.com/weather/picture/1_18508_1_1_137AE9_160_ffffff_333333_08488D_1_ffffff_333333_0_6.png?scode=124&domid=w209&anc_id=32023"  alt="booked.net"/></a><!-- weather widget end -->
+                    <!-- weather widget start --><a target="_blank" href="https://www.booked.net/weather/london-18114"><img class="weather" src="https://w.bookcdn.com/weather/picture/31_18114_1_1_34495e_250_2c3e50_ffffff_ffffff_1_2071c9_ffffff_0_6.png?scode=124&domid=w209&anc_id=88331"  alt="booked.net"/></a><!-- weather widget end -->
                     </div>
                 </div>
             </div>
@@ -134,6 +143,7 @@
 
     <div class="buttons">
         <div class="button-container" id="button-container">
+        <form method="POST" id="edit_home">
         {%for room in rooms%}
             <div class="access-button" id="buttons">
                 <button type="button" class="button" "btn-selection" id="{{rooms[room].code}}" onclick="window.location.href='{{ url_for('controls' , sid=room)}}';"> 
@@ -141,9 +151,10 @@
                 </button>
                 <br>
                 <br>
-                <input class="name-button" type="text" id="input-{{rooms[room].code}}">
+                <input class="name-button" type="text" name ="{{rooms[room].code}}"id="input-text-{{rooms[room].code}}" onchange="changeButtonText('{{rooms[room].code}}')">
             </div>
         {%endfor%} 
+        </form>
         </div>
     </div>
 {% endblock %}
