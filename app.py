@@ -3,14 +3,10 @@ from flask_socketio import *
 import  flask_socketio
 import cv2
 
-print(cv2.__version__)
 
 app = Flask(__name__)
 socket = SocketIO(app, async_mode='threading')
 rooms = dict()
-
-
-
 
 
 def gen_frames():  
@@ -113,10 +109,6 @@ def get_stream(data):
 @socket.on('to_camera')
 def send_to_camera(data):
     socket.emit("move_camera", data)
-
-
-
-
 
 
 if __name__ == '__main__':
