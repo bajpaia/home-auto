@@ -2,10 +2,25 @@ from flask import *
 from flask_socketio import *
 import  flask_socketio
 import cv2
+from flask_login import login_user, login_required, logout_user, current_user, LoginManager
+from flask_sqlalchemy import SQLAlchemy
+from werkzeug.security import generate_password_hash, check_password_hash
+
 
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'supersecretkey'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
+db = SQLAlchemy(app)
 socket = SocketIO(app, async_mode='threading')
+
+
+from db_models import *
+
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = 'home'
+
 rooms = dict()
 camera_active = False
 
@@ -18,6 +33,10 @@ def cam_toggle():
         camera_active = True
         print("on")
 
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
 
 def gen_frames():  
     camera = cv2.VideoCapture("tcp://192.168.0.174:8554")
@@ -32,27 +51,56 @@ def gen_frames():
                    b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def index():
-    return render_template('index.html')
+    if request.method == 'GET':
+        return render_template('index.html')
+    
+    email = request.form.get("email")
+    user = User.query.filter_by(email = email).first()
+    if not user:
+        flash('This email is not registered on Precious')
+        return redirect(url_for('index'))  
+    if not check_password_hash(user.password_hash, request.form.get('password')):
+        flash('Please check login details')
+        return redirect(url_for('index'))
+    login_user(user)
+    return redirect(url_for('home'))
 
-
+@login_required
 @app.route('/video_feed')
 def video_feed():
     return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 
-@app.route('/register')
+@app.route('/register', methods=['GET', 'POST'])
 def register_user():
-    return render_template('sign_up.html')
+    if request.method == "GET":
+        return render_template('sign_up.html')
+    
+    email = request.form.get('email')
+    name = request.form.get('name')
+    password = request.form.get('password')
+    user = User.query.filter_by(email=email).first()
+    if user: 
+        return redirect(url_for('index'))
+    new_user = User(email=email, name=name, password_hash=generate_password_hash(password, method='sha256'))
+    db.session.add(new_user)
+    db.session.commit()
+    return redirect(url_for('home'))
 
 
+@login_required
 @app.route('/home')
 def home():
+    if not current_user.is_authenticated:
+        return redirect(url_for('index'))
+    print(current_user.name)
     return render_template('home.html', rooms = rooms)
 
 
 
+@login_required
 @app.route('/edit_home', methods=['GET', 'POST'])
 def edit_home():
     if request.method == 'GET':
@@ -64,6 +112,12 @@ def edit_home():
     return redirect(url_for('home'))
 
 
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('index'))
+
+@login_required
 @app.route('/<sid>/edit_room', methods=['GET', 'POST'])
 def edit_room(sid):
     if request.method == 'GET':
@@ -76,7 +130,7 @@ def edit_room(sid):
             socket.emit("change_relay_names", {"name":name, "relay": int(relay['pin'])}, room=sid)
     return redirect(url_for('controls', sid=sid))
 
-
+@login_required
 @app.route('/<sid>/controls')
 def controls(sid):
     if request.method == 'GET':
@@ -84,9 +138,11 @@ def controls(sid):
             return render_template('room.html', room=rooms[sid])
         return redirect(url_for('home'))
 
-
+@login_required
 @app.route('/security')
 def security():
+    if not current_user.is_authenticated:
+        return redirect(url_for('index'))
     return render_template('camera.html')
 
 
