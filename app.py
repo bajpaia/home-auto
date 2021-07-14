@@ -2,6 +2,7 @@ from flask import *
 from flask_socketio import *
 import  flask_socketio
 import cv2
+from imutils.video import VideoStream
 from flask_login import login_user, login_required, logout_user, current_user, LoginManager
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -38,15 +39,14 @@ def load_user(user_id):
 
 def gen_frames():  
     camera = cv2.VideoCapture("tcp://192.168.0.175:8554")
-    while camera_active:
+    while True:
         success, frame = camera.read()  # read the camera frame
         if not success:
             break
-        else:
-            ret, buffer = cv2.imencode('.jpg', frame)
-            frame = buffer.tobytes()
-            yield (b'--frame\r\n'
-                   b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+        ret, buffer = cv2.imencode('.jpg', frame)
+        frame = buffer.tobytes()
+        yield (b'--frame\r\n'
+                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
 
 @app.route('/', methods=['GET', 'POST'])
