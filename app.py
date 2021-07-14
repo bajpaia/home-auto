@@ -7,19 +7,17 @@ from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 
 
-
+login_manager = LoginManager()
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'supersecretkey'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 db = SQLAlchemy(app)
+login_manager.init_app(app)
+login_manager.login_view = 'home'
 socket = SocketIO(app, async_mode='threading')
-
 
 from db_models import *
 
-login_manager = LoginManager()
-login_manager.init_app(app)
-login_manager.login_view = 'home'
 
 rooms = dict()
 camera_active = False
@@ -39,7 +37,7 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 def gen_frames():  
-    camera = cv2.VideoCapture("tcp://192.168.0.174:8554")
+    camera = cv2.VideoCapture("tcp://192.168.0.175:8554")
     while camera_active:
         success, frame = camera.read()  # read the camera frame
         if not success:
@@ -59,7 +57,7 @@ def index():
     email = request.form.get("email")
     user = User.query.filter_by(email = email).first()
     if not user:
-        flash('This email is not registered on Precious')
+        flash('This email is not registered')
         return redirect(url_for('index'))  
     if not check_password_hash(user.password_hash, request.form.get('password')):
         flash('Please check login details')
@@ -103,6 +101,8 @@ def home():
 @login_required
 @app.route('/edit_home', methods=['GET', 'POST'])
 def edit_home():
+    if not current_user.is_authenticated:
+        return redirect(url_for('index'))
     if request.method == 'GET':
         return render_template('edit_home.html', rooms = rooms)
     for room in rooms:
@@ -120,6 +120,8 @@ def logout():
 @login_required
 @app.route('/<sid>/edit_room', methods=['GET', 'POST'])
 def edit_room(sid):
+    if not current_user.is_authenticated:
+        return redirect(url_for('index'))
     if request.method == 'GET':
         return render_template('edit_room.html', room = rooms[sid])
     room = rooms[sid]
@@ -133,6 +135,8 @@ def edit_room(sid):
 @login_required
 @app.route('/<sid>/controls')
 def controls(sid):
+    if not current_user.is_authenticated:
+        return redirect(url_for('index'))
     if request.method == 'GET':
         if sid in rooms:
             return render_template('room.html', room=rooms[sid])
