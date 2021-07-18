@@ -150,6 +150,12 @@ def security():
     return render_template('camera.html')
 
 
+
+@app.route('/guide')
+def guide():
+    return render_template('guide.html')
+
+
 @socket.on('connection_ack')
 def acknoledge(data):
     print(data)

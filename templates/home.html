@@ -6,8 +6,7 @@
     <link rel="stylesheet" href="https://use.typekit.net/oaq5uou.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.2/socket.io.js" integrity="sha512-iZIBSs+gDyTH0ZhUem9eQ1t4DcEn2B9lHxfRMeGQhyNdSUz+rb+5A3ummX6DQTOIs1XK0gOteOg/LPtSo9VJ+w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    
-
+    <style>
         @import url("https://use.typekit.net/oaq5uou.css");
       </style>
        <script>
@@ -41,111 +40,174 @@
  
     
 {% endblock %}
-{% block content %}
-     <ul class="header">
-        <li class="back-button">
-            <div class="back-icon">
-            <a href="{{url_for('logout')}}">
-                <img class="edit-icon-img" style="margin-left:20px;"src="{{url_for('static', filename='image/logout.png')}}" alt="">
-            </a>
-            </div>
-        </li>
-        <li class="edit-button">
-             <div class="edit-icon">
-             <a href={{url_for('edit_home')}}>
-                <img class="edit-icon-img" src="{{url_for('static', filename='image/edit.png')}}" alt="">
-            </a>
-            </div>
-        </li>
-      <li class="title-profile"><p>House</p></li>
-    </ul>
 
-       <div class="add-button" id="controls">
+{% block content %}
+        <ul class="header">
+            <li class="back-button">
+                <div class="back-icon">
+                <a href="{{url_for('logout')}}">
+                    <img class="edit-icon-img" style="margin-left:20px;"src="{{url_for('static', filename='image/logout.png')}}" alt="">
+                </a>
+                </div>
+            </li>
+            <li class="edit-button">
+                <div class="edit-icon">
+                <a href={{url_for('edit_home')}}>
+                    <img class="edit-icon-img" src="{{url_for('static', filename='image/edit.png')}}" alt="">
+                </a>
+                </div>
+            </li>
+            <li class="camera-button">
+                <a href ="{{url_for('security')}}">
+                    <img  class="edit-icon-img" src="{{url_for('static', filename='image/security.png')}}" alt="">
+                </a>
+            </li>
+            <li class="title-profile">
+            <p>House</p></li>
+        </ul>
+
+       <div class="add-button" style="display:none;" id="controls">
 
             <img class="add-button-img" src="{{url_for('static', filename='image/add.png')}}" alt="" >
     </div>
 
-    <div class="date-time">
-        <div class="half-block">
-            <div class="date-time-container">
-                <div class="date-time">
-                    <p id="date"class="date-time-text">date</p>
+    <div class="main-content">
+        
+       
+
+        <div class="buttons">
+            <div class="button-container" id="button-container">
+                {%for room in rooms%}
+
+    
+                    <div class="access-button" id="buttons">
+                        <button type="button" class="button" "btn-selection" id=""{{rooms[room].code}}"" onclick="window.location.href='{{ url_for('controls' , sid=room)}}';"> 
+                            <img class="room-icon" src="{{url_for('static', filename='image/room.png')}}">
+                            <span style="display:inline-block; margin-left:5%;">
+                            {{rooms[room].name}}
+                            </span>
+                        </button>
+                    </div>
+
+                {%endfor%} 
+
+                 
+                <div class="access-button" id="buttons">
+                        <button type="button" class="button" "btn-selection" id="12" onclick="window.location.href='{{ url_for('controls' , sid=room)}}';"> 
+                            <img class="room-icon" src="{{url_for('static', filename='image/room.png')}}">
+                            <span style="display:inline-block; margin-left:5%;">
+                            Kitchen
+                            </span>
+                        </button>
                 </div>
-            </div>
-        </div>
-        <div class="half-block">
-            <div class="date-time-container">
-                <div class="date-time">
-                    <p id= "time"class="date-time-text" >time</p>
+                <div class="access-button" id="buttons">
+                        <button type="button" class="button" "btn-selection" id="12" onclick="window.location.href='{{ url_for('controls' , sid=room)}}';"> 
+                            <img class="room-icon" src="{{url_for('static', filename='image/room.png')}}">
+                            <span style="display:inline-block; margin-left:5%;">
+                            MAster Bedroom
+                            </span>
+                        </button>
                 </div>
+                <div class="access-button" id="buttons">
+                        <button type="button" class="button" "btn-selection" id="12" onclick="window.location.href='{{ url_for('controls' , sid=room)}}';"> 
+                            <img class="room-icon" src="{{url_for('static', filename='image/room.png')}}">
+                            <span style="display:inline-block; margin-left:5%;">
+                            MAster Bedroom
+                            </span>
+                        </button>
+                </div>
+                <div class="access-button" id="buttons">
+                        <button type="button" class="button" "btn-selection" id="12" onclick="window.location.href='{{ url_for('controls' , sid=room)}}';"> 
+                            <img class="room-icon" src="{{url_for('static', filename='image/room.png')}}">
+                            <span style="display:inline-block; margin-left:5%;">
+                            MAster Bedroom
+                            </span>
+                        </button>
+                </div>
+                <div class="access-button" id="buttons">
+                        <button type="button" class="button" "btn-selection" id="12" onclick="window.location.href='{{ url_for('controls' , sid=room)}}';"> 
+                            <img class="room-icon" src="{{url_for('static', filename='image/room.png')}}">
+                            <span style="display:inline-block; margin-left:5%;">
+                            MAster Bedroom
+                            </span>
+                        </button>
+                </div>
+               <div class="access-button" id="buttons">
+                        <button type="button" class="button" "btn-selection" id="12" onclick="window.location.href='{{ url_for('controls' , sid=room)}}';"> 
+                            <img class="room-icon" src="{{url_for('static', filename='image/room.png')}}">
+                            <span style="display:inline-block; margin-left:5%;">
+                            Kitchen
+                            </span>
+                        </button>
+                </div>
+
+               
             </div>
+        
         </div>
-            <script type="text/javascript">
 
-        var tday=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-        var tmonth=["January","February","March","April","May","June","July","August","September","October","November","December"];
+            <div class="weather">
+                        <a class="weatherwidget-io" href="https://forecast7.com/en/28d4677d03/gurugram/" data-font="Ubuntu" data-icons="Climacons Animated" data-mode="Current" data-days="3" data-theme="original" data-basecolor="rgba(62, 69, 105, 0)" data-accent="#d84b4b" >Gurgaon, Haryana, India</a>
+                        <script>
+                        !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+                        </script>
+            </div>
 
-        function GetClock()
-        {
-        var d=new Date();
-        var nday=d.getDay(),nmonth=d.getMonth(),ndate=d.getDate(),nyear=d.getFullYear();
-        var nhour=d.getHours(),nmin=d.getMinutes(),nsec=d.getSeconds(),ap;
 
-        if(nhour==0){ap=" AM";nhour=12;}
-        else if(nhour<12){ap=" AM";}
-        else if(nhour==12){ap=" PM";}
-        else if(nhour>12){ap=" PM";nhour-=12;}
-
-        if(nmin<=9) nmin="0"+nmin;
-        if(nsec<=9) nsec="0"+nsec;
-
-        var date = ""+tday[nday]+", "+tmonth[nmonth]+" "+ndate+" "+nyear+""
-        var clocktext= " "+nhour+":"+nmin+":"+nsec+ap+"";
-
-        document.getElementById('time').innerText=clocktext;
-        document.getElementById('date').innerText=date;       
-         }
-
-        GetClock();
-        setInterval(GetClock,1000);
-
-    </script>
-    </div>
-
-    <div class="date-time">
-        <div class="half-block">
-            <div class="icon-container">
-                <div class="mode-icon">
-                    <div class="icon-img">
-
-                    <script src="weather.js"></script>
-                    <!-- weather widget start --><a target="_blank" href="https://www.booked.net/weather/gurgaon-18508"><img class="weather" src="https://w.bookcdn.com/weather/picture/32_18508_1_1_95a5a6_250_7f8c8d_ffffff_ffffff_1_2071c9_ffffff_0_6.png?scode=124&domid=w209&anc_id=618"  alt="booked.net"/></a><!-- weather widget end -->
+        <div class="date-time-task" style="border-radius:10px 10px;">
+            <div class="half-block">
+                <div class="date-time-container">
+                    <div class="date-time">
+                        <p id="date"class="date-time-text">date</p>
+                    </div>
+                    <div class="date-time" >
+                        <p id= "time" style="font-size:40px;" class="date-time-text" >time</p>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="half-block">
-            <div class="icon-container">
-                <div class="mode-icon">
-                <a href ="{{url_for('security')}}">
-                    <img  style="width:140px;"class="icon-img" src="{{url_for('static', filename='image/security.png')}}" alt="">
-                </a>
+            <div class="half-block" style="margin-right: 1em;" >
+                <div class="access-button" id="buttons">
+                        <button type="button" class="button" "btn-selection" id="12" onclick="window.location.href='{{ url_for('controls' , sid=room)}}';"> 
+            
+                        Add Task +
+                        </button>
                 </div>
-
             </div>
-        </div>
-    </div>
+            
+            <script type="text/javascript">
 
-    <div class="buttons">
-        <div class="button-container" id="button-container">
-        {%for room in rooms%}
-            <div class="access-button" id="buttons">
-                <button type="button" class="button" "btn-selection" id="{{rooms[room].code}}" onclick="window.location.href='{{ url_for('controls' , sid=room)}}';"> 
-                    {{rooms[room].name}}
-                </button>
-            </div>
-        {%endfor%} 
+                var tday=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+                var tmonth=["January","February","March","April","May","June","July","August","September","October","November","December"];
+
+                function GetClock()
+                {
+                var d=new Date();
+                var nday=d.getDay(),nmonth=d.getMonth(),ndate=d.getDate(),nyear=d.getFullYear();
+                var nhour=d.getHours(),nmin=d.getMinutes(),nsec=d.getSeconds(),ap;
+
+                if(nhour==0){ap="AM";nhour=12;}
+                else if(nhour<12){ap="AM";}
+                else if(nhour==12){ap="PM";}
+                else if(nhour>12){ap="PM";nhour-=12;}
+
+                if(nmin<=9) nmin="0"+nmin;
+                if(nsec<=9) nsec="0"+nsec;
+
+                var date = ""+tday[nday]+", "+tmonth[nmonth]+" "+ndate+""
+                var clocktext= " "+nhour+":"+nmin+ap+"";
+
+                document.getElementById('time').innerText=clocktext;
+                document.getElementById('date').innerText=date;       
+                }
+
+                GetClock();
+                setInterval(GetClock,1000);
+
+            </script>
         </div>
+
+                   
+         </div>
     </div>
 {% endblock %}

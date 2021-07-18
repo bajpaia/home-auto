@@ -1,3 +1,7 @@
+body,html {
+  margin:0;
+  padding:0;
+}
 .header {
   list-style-type: none;
   margin: 0;
@@ -5,8 +9,7 @@
   overflow: hidden;
   width: 100%;
   height: 5rem;
-  background: seashell;
-  box-shadow: 0px 3px 6px rgba(255, 107, 107, 0.3);
+
 
 }
 
@@ -43,8 +46,8 @@
   font-family: industry-inc-base, sans-serif;
   font-weight: normal;
   font-size: 30px;
-  text-align: center;
-  color: red;
+  top: -5px;
+  color: seashell;
 
 }
 
@@ -70,33 +73,43 @@
   width: 100%;
 }
 
+.date-time-task
+{
+  margin-top: 1.5em;
+  border: 1px solid transparent;
+  display: flex;
+}
+
+
 .half-block {
   display: block;
   margin:0;
-
   flex-basis: 100%;
-  max-width: 50vw;
+  max-width: 50%;
 }
 
 .date-time-container {
   max-width: 50vw;
-  height: 40px;
-
-  border: 1px solid seashell;
+  height: auto;
+border-radius: 10px;
+margin-left: 3.5em;
+margin-top: 0.2em;
 
 }
 
 .date-time {
   margin: 0 auto;
+  border: 1px solid transparent;
+
 }
 
 .date-time-text {
   font-family: industry-inc-base, sans-serif;
   font-weight: normal;
-  font-size: 15px;
+  font-size: 18px;
   text-align: center;
-  color: #f15e5c;
-  line-height: 41px;
+  color: seashell;
+  line-height: 35px;
   margin: auto;
 
 }
@@ -104,17 +117,17 @@
 
 
 .icon-container {
+
   max-width: 50vw;
-  height: 170px;
-  border: 1px solid seashell;
-  display: grid;
+  display: flex;
+  justify-content: stretch;
 
 }
 
 .icon-img {
 
   padding-top: 1em;
-  padding-bottom: 0.5em;
+  padding-bottom: 1em;
   height: 160px;
 }
 
@@ -137,50 +150,85 @@
 
 }
 
+.buttons
+{
+  top:10%;
+}
 
 
-.button-container {
+
+  @media only screen and (min-width: 600px)
+  {
+    .button-container {
+      min-height: 75px;
+      overflow: hidden;
+      height: auto;
+      text-align: center;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(auto, 1fr));
+      grid-gap:1px, 10px;
+      padding-top:4em;
+      
+    }
+    .button
+    {
+      min-width: 200;
+    }
+
+  }
   
-
-  border: 1px solid seashell;
+  @media only screen and (max-width: 500px)
+  {
+.button-container {
   min-height: 75px;
+  overflow: hidden;
   height: auto;
   text-align: center;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(auto, 1fr));
+  grid-gap:1px, 10px;
+  margin:1.5em;
   
+}
 }
 
 .access-button {
-  margin: 0;
+  display: flex;
+  justify-content: center;
   position: relative;
-  display: inline-block;
-  margin-bottom: 10px;
+  align-items: center;
 }
 
+.buttons{
+  padding: 20px;
+}
 .button 
 {
-  background-color: #4CAF50; /* Green */
+  min-height: 70px;
+  max-height: 150px;
+  min-width: 70px;
+  max-width: 135px;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  width: auto;
   border: none;
-    color: white;
-    padding: 20px;
-    text-align: center;
+  color: white;
+  text-align: center;
     text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
+    font-size: auto;
     margin: 4px 2px;
     cursor: pointer;
-    box-shadow: 0px 1px 4px -2px #333;
+    box-shadow:0.1em 0.1em 0.1em black, 0.1em 0.1em 0.1em black;
     text-shadow: 0px -1px #333;
-    border-radius: 40px;
+    border-radius: 15px;
     padding: 15px 25px;
-    background-color: green; /*for compatibility with older browsers*/
-    background-image: linear-gradient(rgb(255, 1, 1),rgb(209, 162, 162));
+    background-image: linear-gradient(to bottom left,#232E49 55%, #3E4569);;
 
     /* text styles */
-    text-decoration: none;
-    color: #fff;
-    font-size: 25px;
-    font-family: sans-serif;
+    font-family:  industry-inc-base, sans-serif;
     font-weight: 100;
+    
 }
 
 
@@ -201,10 +249,8 @@ background: linear-gradient(#073,#0fa);
 
 .weather
 {
-  margin: 5%;
   width: auto;
   max-width: 100%;
-  height: 80%;
 
   border-radius: 10px;
 }
@@ -225,4 +271,47 @@ background: linear-gradient(#073,#0fa);
   box-shadow: 0px 1px 4px -2px #333;
   border-radius: 40px;
   padding: 15px 25px;
+}
+
+.main-content
+{
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
+  background:linear-gradient(to bottom left,#232E49 40%,#121725 );
+  height: 100%;
+}
+
+.camera-button
+{
+  float:right;
+}
+
+.weather-container
+{
+  height: 150px;
+  background: linear-gradient(to bottom left,#232E49, #3E4569);
+  border-radius: 15px;
+  box-shadow:0.1em 0.1em 0.1em black, 0.1em 0.1em 0.1em black;
+  max-width:256px;
+  margin:auto;
+  justify-content: center;
+  vertical-align: middle;
+
+}
+
+.weather
+{
+  background: linear-gradient(to bottom left,#232E49, #3E4569);
+  border-radius: 15px;
+  box-shadow:0.1em 0.1em 0.1em black, 0.1em 0.1em 0.1em black;
+  margin-left: 3.5em;
+  margin-right: 3.5em;
+}
+
+.room-icon
+{
+  vertical-align: middle;
+  width:32px;
+  position: relative;
+  
 }

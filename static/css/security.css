@@ -27,7 +27,7 @@
     transform: translate(-50%,-50%);
     width: 66.6%;
     height: 66.6%;
-    background: #ddd;
+    background: #5a5a5a;
 }
 .d-pad:after {
     content: '';
@@ -56,7 +56,7 @@
     height: 43%;
     line-height: 40%;
     color: #fff;
-    background: #ddd;
+    background: #3c3838;
     text-align: center;
 }
 .d-pad a:hover {
@@ -76,7 +76,7 @@
     position: absolute;
     width: 102%;
     height: 78%;
-    background: #413884;
+    background: #232323;
     border-radius: 20%;
 }
 .d-pad a.left, .d-pad a.right {

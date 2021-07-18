@@ -22,7 +22,7 @@
 body {
     max-width: 1920px;
     max-height: 1920px;
-    background: #eee;
+    background: #1b2025;
 }
 
 .container
@@ -35,7 +35,6 @@ body {
 
 
 .content{
-
     font-weight: bold;
     text-shadow: -1px -1px 1px #000, 1px 1px 1px #000;
     position: relative;
@@ -95,7 +94,7 @@ body {
     width: 100%;
     overflow: hidden;
     height: 100%;
-    background-image: linear-gradient(to top, #3f3786 20%, #27273c 80%);
+    background-color: #121725;
 
 }
 .bgTop {
