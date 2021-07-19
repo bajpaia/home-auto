@@ -42,29 +42,31 @@
 {% endblock %}
 
 {% block content %}
-        <ul class="header">
-            <li class="back-button">
+    <div class="header">
+            <div class="back-button">
                 <div class="back-icon">
                 <a href="{{url_for('logout')}}">
-                    <img class="edit-icon-img" style="margin-left:20px;"src="{{url_for('static', filename='image/logout.png')}}" alt="">
+                    <img class="edit-icon-img" src="{{url_for('static', filename='image/logout.png')}}" alt="">
                 </a>
                 </div>
-            </li>
-            <li class="edit-button">
+            </div>
+            <div class="edit-button">
                 <div class="edit-icon">
                 <a href={{url_for('edit_home')}}>
                     <img class="edit-icon-img" src="{{url_for('static', filename='image/edit.png')}}" alt="">
                 </a>
                 </div>
-            </li>
-            <li class="camera-button">
+            </div>
+            
+            <div class="camera-button">
                 <a href ="{{url_for('security')}}">
                     <img  class="edit-icon-img" src="{{url_for('static', filename='image/security.png')}}" alt="">
                 </a>
-            </li>
-            <li class="title-profile">
-            <p>House</p></li>
-        </ul>
+            </div>
+            <div class="title-profile">
+                <span>House</span>
+            </div>
+        </div>
 
        <div class="add-button" style="display:none;" id="controls">
 
@@ -92,7 +94,7 @@
                 {%endfor%} 
 
                  
-                <div class="access-button" id="buttons">
+                <!-- <div class="access-button" id="buttons">
                         <button type="button" class="button" "btn-selection" id="12" onclick="window.location.href='{{ url_for('controls' , sid=room)}}';"> 
                             <img class="room-icon" src="{{url_for('static', filename='image/room.png')}}">
                             <span style="display:inline-block; margin-left:5%;">
@@ -139,7 +141,7 @@
                             Kitchen
                             </span>
                         </button>
-                </div>
+                </div> -->
 
                
             </div>
@@ -149,7 +151,7 @@
             <div class="weather">
                         <a class="weatherwidget-io" href="https://forecast7.com/en/28d4677d03/gurugram/" data-font="Ubuntu" data-icons="Climacons Animated" data-mode="Current" data-days="3" data-theme="original" data-basecolor="rgba(62, 69, 105, 0)" data-accent="#d84b4b" >Gurgaon, Haryana, India</a>
                         <script>
-                        !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+                        !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="{{url_for('static', filename='js/weather-widget.js')}}";fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
                         </script>
             </div>
 
@@ -161,7 +163,7 @@
                         <p id="date"class="date-time-text">date</p>
                     </div>
                     <div class="date-time" >
-                        <p id= "time" style="font-size:40px;" class="date-time-text" >time</p>
+                        <p id= "time" style="font-size:35px;" class="date-time-text" >time</p>
                     </div>
                 </div>
             </div>
@@ -175,36 +177,7 @@
                 </div>
             </div>
             
-            <script type="text/javascript">
-
-                var tday=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-                var tmonth=["January","February","March","April","May","June","July","August","September","October","November","December"];
-
-                function GetClock()
-                {
-                var d=new Date();
-                var nday=d.getDay(),nmonth=d.getMonth(),ndate=d.getDate(),nyear=d.getFullYear();
-                var nhour=d.getHours(),nmin=d.getMinutes(),nsec=d.getSeconds(),ap;
-
-                if(nhour==0){ap="AM";nhour=12;}
-                else if(nhour<12){ap="AM";}
-                else if(nhour==12){ap="PM";}
-                else if(nhour>12){ap="PM";nhour-=12;}
-
-                if(nmin<=9) nmin="0"+nmin;
-                if(nsec<=9) nsec="0"+nsec;
-
-                var date = ""+tday[nday]+", "+tmonth[nmonth]+" "+ndate+""
-                var clocktext= " "+nhour+":"+nmin+ap+"";
-
-                document.getElementById('time').innerText=clocktext;
-                document.getElementById('date').innerText=date;       
-                }
-
-                GetClock();
-                setInterval(GetClock,1000);
-
-            </script>
+            <script type="text/javascript" src="{{url_for('static', filename='js/clock.js')}}"></script>
         </div>
 
                    

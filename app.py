@@ -105,6 +105,8 @@ def edit_home():
         return redirect(url_for('index'))
     if request.method == 'GET':
         return render_template('edit_home.html', rooms = rooms)
+    if request.method == 'POST':
+        print('Posting')
     for room in rooms:
         name = request.form.get(room)
         if len(name) >0:

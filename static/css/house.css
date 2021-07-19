@@ -1,11 +1,6 @@
-body,html {
-  margin:0;
-  padding:0;
-}
+
 .header {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+
   overflow: hidden;
   width: 100%;
   height: 5rem;
@@ -30,7 +25,8 @@ body,html {
 
 .back-button {
   position: relative;
-  float: left;
+  float: right;
+  padding-right: 2em;
   
 }
 
@@ -43,6 +39,8 @@ body,html {
 }
 
 .title-profile {
+  padding-left:1.5em;
+  padding-top: 25px;
   font-family: industry-inc-base, sans-serif;
   font-weight: normal;
   font-size: 30px;
@@ -106,7 +104,6 @@ margin-top: 0.2em;
 .date-time-text {
   font-family: industry-inc-base, sans-serif;
   font-weight: normal;
-  font-size: 18px;
   text-align: center;
   color: seashell;
   line-height: 35px;
@@ -219,7 +216,7 @@ margin-top: 0.2em;
     font-size: auto;
     margin: 4px 2px;
     cursor: pointer;
-    box-shadow:0.1em 0.1em 0.1em black, 0.1em 0.1em 0.1em black;
+    box-shadow:0.1em 0.1em 0.1em #00000038, 0.1em 0.1em 0.1em #00000038;
     text-shadow: 0px -1px #333;
     border-radius: 15px;
     padding: 15px 25px;
@@ -247,30 +244,20 @@ margin-top: 0.2em;
 background: linear-gradient(#073,#0fa);
 }
 
-.weather
-{
-  width: auto;
-  max-width: 100%;
-
-  border-radius: 10px;
-}
-
 .name-button
 {
-  width:auto;
-  min-width: 115px;
+  min-width:70px;
+  max-width: 135px;
+  min-height: 70px;
+  max-height: 150px;
   background-color: gray;
   color:white;
-  padding: 20px;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
   font-size: 16px;
-  margin: 4px 2px;
   cursor: pointer;
   box-shadow: 0px 1px 4px -2px #333;
-  border-radius: 40px;
-  padding: 15px 25px;
+  border-radius: 15px;
 }
 
 .main-content
@@ -303,7 +290,7 @@ background: linear-gradient(#073,#0fa);
 {
   background: linear-gradient(to bottom left,#232E49, #3E4569);
   border-radius: 15px;
-  box-shadow:0.1em 0.1em 0.1em black, 0.1em 0.1em 0.1em black;
+  box-shadow:0.1em 0.1em 0.1em #00000038, 0.1em 0.1em 0.1em #00000038;
   margin-left: 3.5em;
   margin-right: 3.5em;
 }
@@ -314,4 +301,65 @@ background: linear-gradient(#073,#0fa);
   width:32px;
   position: relative;
   
+}
+
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background: linear-gradient(to left, #F34C94, #927DE3 40%);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
 }

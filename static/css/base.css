@@ -19,11 +19,13 @@
 
 
 
-body {
-    max-width: 1920px;
-    max-height: 1920px;
-    background: #1b2025;
-}
+    body,html {
+        margin:0;
+        padding:0;
+        background: #1b2025;
+      }
+
+
 
 .container
 {
