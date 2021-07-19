@@ -50,6 +50,7 @@ function __weatherwidget_init() {
             i[o.id].setAttribute("src", "https://weatherwidget.io/w/"),
             (i[o.id].style.display = "block"),
             (i[o.id].style.position = "absolute"),
+            (i[o.id].style.top = "5%"),
             (i[o.id].onload = function () {
               i[o.id].contentWindow.postMessage(o, "https://weatherwidget.io");
             }),

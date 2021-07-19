@@ -172,6 +172,8 @@ margin-top: 0.2em;
       min-width: 200;
     }
 
+
+
   }
   
   @media only screen and (max-width: 500px)
@@ -187,6 +189,7 @@ margin-top: 0.2em;
   margin:1.5em;
   
 }
+
 }
 
 .access-button {
@@ -197,7 +200,9 @@ margin-top: 0.2em;
 }
 
 .buttons{
-  padding: 20px;
+  padding-top: 2em;
+    padding-left: 2em;
+    padding-right: 2em;
 }
 .button 
 {
@@ -293,6 +298,7 @@ background: linear-gradient(#073,#0fa);
   box-shadow:0.1em 0.1em 0.1em #00000038, 0.1em 0.1em 0.1em #00000038;
   margin-left: 3.5em;
   margin-right: 3.5em;
+
 }
 
 .room-icon
