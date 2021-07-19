@@ -44,6 +44,11 @@ def connection_event():
     room_json = get_room()
     sio.emit('connection_ack', room_json)
 
+
+@sio.on('disconnect')
+def disconnection_event():
+    room.save()
+
 @sio.on('change_room_name')
 def name_change(data):
     room.name = data["name"]
