@@ -83,7 +83,7 @@
 
     
                     <div class="access-button" id="buttons">
-                        <button type="button" class="button" "btn-selection" id=""{{rooms[room].code}}"" onclick="window.location.href='{{ url_for('controls' , sid=room)}}';"> 
+                        <button type="button" class="button" "btn-selection" id="{{rooms[room].code}}" onclick="window.location.href='{{ url_for('controls' , sid=room)}}';"> 
                             <img class="room-icon" src="{{url_for('static', filename='image/room.png')}}">
                             <span style="display:inline-block; margin-left:5%;">
                             {{rooms[room].name}}

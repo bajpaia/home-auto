@@ -62,6 +62,8 @@ def execute(data):
     for relay in room.relays:
         if relay.pin == int(data['relay']):
             relay.toggle()
+            room_json = get_room()
+            sio.emit('connection_ack', room_json)
     
 
 

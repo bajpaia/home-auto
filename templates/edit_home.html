@@ -26,6 +26,17 @@
     }
 </script>
 
+<script>
+$('input[type="checkbox"]').on('change', function() 
+{
+  if($(this).is(":checked")) 
+  {
+     alert('checked');
+     console.log(this.id);
+  }
+});
+</script>
+
  
     
 {% endblock %}
@@ -70,7 +81,7 @@
         
         {%for room in rooms%}
             <div class="access-button" id="buttons">
-               <button type="button" class="button" "btn-selection" id=""{{rooms[room].code}}"" onclick="window.location.href='{{ url_for('controls' , sid=room)}}';"> 
+               <button type="button" class="button" "btn-selection" id="{{rooms[room].code}}" onclick="window.location.href='{{ url_for('controls' , sid=room)}}';"> 
                             <img class="room-icon" src="{{url_for('static', filename='image/room.png')}}">
                             <span style="display:inline-block; margin-left:5%;">
                             {{rooms[room].name}}
