@@ -54,7 +54,7 @@
     height: 43%;
     line-height: 40%;
     color: #fff;
-    background: #3c3838;
+    background: #121725;
     text-align: center;
 }
 .d-pad a:hover {
@@ -240,7 +240,9 @@
 .stream-window
 {
     width: 100%;
-    border-radius: 15px;;
+    border-radius: 15px;
+    box-shadow: 0.1em 0.1em 0.1em #01020538, 0.1em 0.1em 0.1em #01020538;
+    border: 2px solid #121725;
 }
 
 .frame-container

@@ -233,7 +233,7 @@ margin-top: 0.2em;
   {
     background: linear-gradient(to bottom left,#232E49, #3E4569);
     border-radius: 15px;
-    box-shadow: 0.1em 0.1em 0.1em #00000038, 0.1em 0.1em 0.1em #00000038;
+    box-shadow: 0.1em 0.1em 0.1em #01020538, 0.1em 0.1em 0.1em #01020538;
     margin-left: 5.7em;
     margin-right: 6.4em;
     display: flex;
@@ -298,7 +298,7 @@ margin-top: 0.2em;
     font-size: auto;
     margin: 4px 2px;
     cursor: pointer;
-    box-shadow:0.1em 0.1em 0.1em #00000038, 0.1em 0.1em 0.1em #00000038;
+    box-shadow:0.1em 0.1em 0.1em #01020538, 0.1em 0.1em 0.1em #01020538;
     text-shadow: 0px -1px #333;
     border-radius: 15px;
     padding: 15px 25px;
@@ -337,7 +337,7 @@ background: linear-gradient(#073,#0fa);
   text-decoration: none;
   font-size: 11px;
   cursor: pointer;
-  box-shadow: 0px 1px 4px -2px #333;
+  box-shadow: 0px 1px 4px -2px #01020538;
   border-radius: 15px;
   margin-top: 0.2em;
   margin-bottom: 0.2em;
@@ -362,7 +362,7 @@ background: linear-gradient(#073,#0fa);
   height: 150px;
   background: linear-gradient(to bottom left,#232E49, #3E4569);
   border-radius: 15px;
-  box-shadow:0.1em 0.1em 0.1em black, 0.1em 0.1em 0.1em black;
+  box-shadow:0.1em 0.1em 0.1em #01020538, 0.1em 0.1em 0.1em #01020538;
   max-width:256px;
   margin:auto;
   justify-content: center;
@@ -374,7 +374,7 @@ background: linear-gradient(#073,#0fa);
 {
   background: linear-gradient(to bottom left,#232E49, #3E4569);
   border-radius: 15px;
-  box-shadow:0.1em 0.1em 0.1em #00000038, 0.1em 0.1em 0.1em #00000038;
+  box-shadow:0.1em 0.1em 0.1em #01020538, 0.1em 0.1em 0.1em #01020538;
   margin-left: 2em;
   margin-right: 2em;
 
@@ -462,7 +462,7 @@ input:checked + .slider:before {
 {
   background: linear-gradient(to bottom left,#232E49, #3E4569);
   border-radius: 15px;
-  box-shadow:0.1em 0.1em 0.1em #00000038, 0.1em 0.1em 0.1em #00000038;
+  box-shadow:0.1em 0.1em 0.1em #01020538, 0.1em 0.1em 0.1em #01020538;
   margin-left: 3em;
   margin-right: 3em;
   display: flex;
@@ -482,7 +482,7 @@ margin-top: 0.2em;
 
 .room-access-button {
 
-  box-shadow:0.1em 0.1em 0.1em #00000038, 0.1em 0.1em 0.1em #00000038;
+  box-shadow:0.1em 0.1em 0.1em #01020538, 0.1em 0.1em 0.1em #01020538;
     background: linear-gradient(to bottom left,#232E49, #3E4569);
     border-radius: 15px;
     min-height: 70px;
