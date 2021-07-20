@@ -3,6 +3,7 @@
 {% block head %}
   {{ super() }}
     <link rel="stylesheet" href="{{url_for('static', filename='css/security.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/house.css')}}">
     <link rel="stylesheet" href="https://use.typekit.net/oaq5uou.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.2/socket.io.js" integrity="sha512-iZIBSs+gDyTH0ZhUem9eQ1t4DcEn2B9lHxfRMeGQhyNdSUz+rb+5A3ummX6DQTOIs1XK0gOteOg/LPtSo9VJ+w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -61,32 +62,38 @@
 {% endblock %}
 
 {% block content %}
-    <ul class="header">
-        <li class="back-button">
-            <div class="back-icon">
-            </div>
-        </li>
-        <li class="edit-button">
-             <div class="edit-icon">
-                <a href="{{url_for('home')}}">
-                <img class="edit-icon-img" src="{{url_for('static', filename='image/home.png')}}" alt="">
-                </a>
-            </div>
-        </li>
-      <li class="title-profile"><p>Security Camera</p></li>
-    </ul>
 
-    <div class="stream-container" id="stream-container">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8  offset-lg-2 frame-container">
-                    <img class="stream-window" src="{{ url_for('video_feed') }}" width="80%" alt=""{{url_for('static', filename='image/alternat_security.png')}}"">
+
+
+ <div class="header">
+
+            <div class="back-button">
+                <div class="back-icon">
+                    <img class="edit-icon-img" src="{{url_for('static', filename='image/home.png')}}" alt="" onclick=window.location.href="{{url_for('home')}}">
+
                 </div>
             </div>
+            
+            <div class="title-profile">
+                <span style="font-size:auto;">Security</span>
+            </div>
         </div>
-    
-    </div>
-      <div class="d-pad-container" id="d-pad-container">
+
+
+<div class="main-content">
+
+    <div class="content-container">
+
+
+        <div class="camera-stream">
+            <div class="frame-container">
+             <img class="stream-window" src="{{ url_for('video_feed') }}" width="80%" alt=""{{url_for('static', filename='image/alternat_security.png')}}"">
+             </div>
+        </div>
+
+
+
+        <div class="d-pad-container" id="d-pad-container">
           <div class="set">
               <nav class="d-pad">
                   <a class="up" id="up" href="#" onmousedown="send_command(this.id)" onmouseup="mouseUpEvent()"></a>
@@ -95,6 +102,35 @@
                   <a class="left" id="left" href="#" onmousedown="send_command(this.id)" onmouseup="mouseUpEvent()"c></a>  
               </nav>
         </div>
+
+        <div class="date-time-task" style="border-radius:10px 10px;">
+            <div class="half-block">
+                <div class="date-time-container">
+                    <div class="date-time">
+                        <p id="date"class="date-time-text">date</p>
+                    </div>
+                    <div class="date-time" >
+                        <p id= "time" style="font-size:35px;" class="date-time-text" >time</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="half-block" style="margin-right: 1em;" >
+                <div class="access-button" id="buttons">
+                        <button type="button" class="button" "btn-selection" id="12" onclick="window.location.href='{{ url_for('controls' , sid=room)}}';"> 
+            
+                        Add Task +
+                        </button>
+                </div>
+            </div>
+            <script type="text/javascript" src="{{url_for('static', filename='js/clock.js')}}"></script>
+        </div>
+
     </div>
-    </div>
+        
+
+</div>
+  
 {% endblock %}
+
+
