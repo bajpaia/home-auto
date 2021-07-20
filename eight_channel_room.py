@@ -17,6 +17,7 @@ room.load()
 connected = False
 user_toggle = False  ##True, if user viewing room on browser (flag for background tasks)
 sio = socketio.Client()
+task = False
 
 
 def get_room():
@@ -59,6 +60,7 @@ def name_change(data):
 
 @sio.on("toggle_room_sensors")
 def toggle_sensors():
+    global task
     if not task:
         task = sio.start_background_task(get_sensor_data, temp_hum)
     else:
