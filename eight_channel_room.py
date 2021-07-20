@@ -59,7 +59,10 @@ def name_change(data):
 
 @sio.on("toggle_room_sensors")
 def toggle_sensors():
-    task = sio.start_background_task(get_sensor_data, temp_hum)
+    if not task:
+        task = sio.start_background_task(get_sensor_data, temp_hum)
+    else:
+        print('already running')
 
 
 @sio.on('execute_request')
@@ -91,16 +94,3 @@ def get_sensor_data(sensor):
         sio.sleep(sensor.delay*60)
 
 
-
-
-
-# @sio.on('water-pump-room-relay')
-# def handle(data):
-#     print('recd from server')
-#     relay_on = relays[11]
-#     if relay_on:
-#         GPIO.output(RELAY, GPIO.LOW)
-#         relays[11] = False
-#     else:
-#         GPIO.output(RELAY, GPIO.HIGH)
-#         relays[11] = True
