@@ -14,7 +14,7 @@ class Relay:
     def __init__(self, pin=11, name='Switch'):
         self.name = name
         self.pin = pin
-        self.active = True
+        self.active = False
 
 
     def toggle(self):
