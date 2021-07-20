@@ -48,7 +48,7 @@
     
 {% endblock %}
 {% block content %}
-     <div class="header">
+        <div class="header">
             <div class="back-button">
                 <div class="back-icon">
                     <img class="edit-icon-img" src="{{url_for('static', filename='image/home.png')}}" alt="" onclick=window.location.href="{{url_for('home')}}">
@@ -82,6 +82,9 @@
             <div class="button-container" id="button-container">
                 {%for relay in room.relays%}
                 {%if not relay.active%}
+                <div style="display: flex;
+  justify-content: center;
+  align-items: center;">
                 <div class="room-access-button" id="buttons">
                     <img class="room-icon" style="margin:auto; grid-area:image;" id="image-{{relay.pin}}" src="{{url_for('static', filename='image/room.png')}}">
                     <p style=" grid-area:name;font-size: 11px;position: absolute;right: 0;">{{relay.name}}</p>
@@ -92,7 +95,11 @@
                         </label>
                     </div>
                 </div>
+            </div>
                 {%else%}
+                <div style="display: flex;
+  justify-content: center;
+  align-items: center;">
                 <div class="room-access-button" id="buttons">
                     <img class="room-icon" style="margin:auto; grid-area:image;" id="image-{{relay.pin}}" src="{{url_for('static', filename='image/room-color.png')}}">
                     <p style=" grid-area:name;font-size: 11px;position: absolute;right: 0;">{{relay.name}}</p>
@@ -102,6 +109,7 @@
                             <span class="slider round"></span>
                         </label>
                     </div>
+                </div>
                 </div>
                 {%endif%}
                 {%endfor%}

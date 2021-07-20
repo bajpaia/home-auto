@@ -66,111 +66,150 @@
     
 {% endblock %}
 {% block content %}
-     <ul class="header">
-     <li class="back-button">
+
+
+    <div class="header">
+        <div class="back-button">
             <div class="back-icon">
                 <input type = "image" class="back-icon-img" src="{{url_for('static', filename='image/back.png')}}" alt="" onclick="goBack()">
+
             </div>
-        </li>
-        <li class="edit-button">
-             <div class="edit-icon">
+        </div>
+        <div class="edit-button">
+            <div class="edit-icon">
                 <img class="edit-icon-img" src="{{url_for('static', filename='image/done.png')}}" alt="" onclick="submit_form()">
             </div>
-        </li>
-     
-      <li class="title-profile"><p>{{room.name}}</p></li>
-    </ul>
-
-    <div class="add-button" id="controls">
-
-            <img class="add-button-img" src="{{url_for('static', filename='image/add.png')}}" alt="" onclick="">
-    </div>
-
-    <div class="date-time">
-        <div class="half-block">
-            <div class="date-time-container">
-                <div class="date-time">
-                    <p id="date"class="date-time-text">date</p>
-                </div>
-            </div>
         </div>
-        <div class="half-block">
-            <div class="date-time-container">
-                <div class="date-time">
-                    <p id= "time"class="date-time-text" >time</p>
-                </div>
-            </div>
+        
+        <div class="camera-button">
+            <a href ="{{url_for('security')}}">
+                <img  class="edit-icon-img" src="{{url_for('static', filename='image/security.png')}}" alt="">
+            </a>
         </div>
-        <script type="text/javascript">
-
-            var tday=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-            var tmonth=["January","February","March","April","May","June","July","August","September","October","November","December"];
-
-            function GetClock()
-            {
-            var d=new Date();
-            var nday=d.getDay(),nmonth=d.getMonth(),ndate=d.getDate(),nyear=d.getFullYear();
-            var nhour=d.getHours(),nmin=d.getMinutes(),nsec=d.getSeconds(),ap;
-
-            if(nhour==0){ap=" AM";nhour=12;}
-            else if(nhour<12){ap=" AM";}
-            else if(nhour==12){ap=" PM";}
-            else if(nhour>12){ap=" PM";nhour-=12;}
-
-            if(nmin<=9) nmin="0"+nmin;
-            if(nsec<=9) nsec="0"+nsec;
-
-            var date = ""+tday[nday]+", "+tmonth[nmonth]+" "+ndate+" "+nyear+""
-            var clocktext= " "+nhour+":"+nmin+":"+nsec+ap+"";
-
-            document.getElementById('time').innerText=clocktext;
-            document.getElementById('date').innerText=date;       
-            }
-
-            GetClock();
-            setInterval(GetClock,1000);
-
-        </script>
-
-    </div>
-
-
-    <div class="date-time">
-        <div class="half-block">
-            <div class="date-time-container">
-                <div class="date-time">
-                    <p id="room-temp"class="date-time-text">temperature</p>
-                </div>
-            </div>
-        </div>
-        <div class="half-block">
-            <div class="date-time-container">
-                <div class="date-time">
-                    <p id= "room-humidity"class="date-time-text" >humidity</p>
-                </div>
-            </div>
+        <div class="title-profile">
+            <span style="font-size:auto;">{{room.name}}</span>
         </div>
     </div>
 
 
 
+<div class="main-content">
 
-    <div class="buttons">
-        <div class="button-container" id="button-container">
+    <div class="content-container">
+
+        <div class="buttons">
         <form method="POST" id="edit_room">
-            {%for relay in room.relays%}
-            <div class="access-button" id="buttons">
-                <button type="button" class="button" "btn-selection" id="{{relay.pin}}"  onclick="send_command(this.id);"> 
-                {{relay.name}}
-                </button>
-                <br>
-                <br>
+            <div class="button-container" id="button-container">
+               
+                {%for relay in room.relays%}
+                {%if not relay.active%}
+                 <div>
+                <div class="room-access-button" id="buttons">
+                    <img class="room-icon" style="margin:auto; grid-area:image;" id="image-{{relay.pin}}" src="{{url_for('static', filename='image/room.png')}}">
+                    <p style=" grid-area:name;font-size: 11px;position: absolute;right: 0;" id ="{{relay.pin}}">{{relay.name}}</p>
+                    <div class="switch-container" style="margin:auto; grid-area:slider;">
+                        <label class="switch" for="{{relay.pin}}">
+                            <input type="checkbox" id="{{relay.pin}}" >
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                </div>
                 <input class="name-button" type="text" name ='{{relay.pin}}' id= "input-text-{{relay.pin}}" onchange="changeButtonText('{{relay.pin}}')">
+                </div>
+                {%else%}
+                <div>
+                <div class="room-access-button" id="buttons">
+                    <img class="room-icon" style="margin:auto; grid-area:image;" id="image-{{relay.pin}}" src="{{url_for('static', filename='image/room-color.png')}}">
+                    <p style=" grid-area:name;font-size: 11px;position: absolute;right: 0;" id ="{{relay.pin}}>{{relay.name}}</p>
+                    <div class="switch-container" style="margin:auto; grid-area:slider;">
+                        <label class="switch" for="{{relay.pin}}">
+                            <input type="checkbox" id="{{relay.pin}}" checked>
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                </div>
+                <input class="name-button" type="text" name ='{{relay.pin}}' id= "input-text-{{relay.pin}}" onchange="changeButtonText('{{relay.pin}}')">
+                </div>
+                {%endif%}
+                {%endfor%}
+            
             </div>
-            {%endfor%}
         </form>
         </div>
+
+
+        <div class="temp-hum">
+            <div class="half-block">
+                <div class="temp-hum-container">
+                    <div class="date-time">
+                        <img class="temp-icon" src="{{url_for('static', filename='image/temperature.png')}}">
+                        <p id="room-temp"class="date-time-text">temperature</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+            <div class="half-block">
+                <div class="temp-hum-container">
+                    <div class="date-time">
+                        <img class="hum-icon" src="{{url_for('static', filename='image/humidity.png')}}">
+                        <p id= "room-humidity"class="date-time-text" >humidity</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="date-time-task" style="border-radius:10px 10px;">
+            <div class="half-block">
+                <div class="date-time-container">
+                    <div class="date-time">
+                        <p id="date"class="date-time-text">date</p>
+                    </div>
+                    <div class="date-time" >
+                        <p id= "time" style="font-size:35px;" class="date-time-text" >time</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="half-block" style="margin-right: 1em;" >
+                <div class="access-button" id="buttons">
+                        <button type="button" class="button" "btn-selection" id="12" onclick="window.location.href='{{ url_for('controls' , sid=room)}}';"> 
+            
+                        Add Task +
+                        </button>
+                </div>
+            </div>
+            
+            <script type="text/javascript" src="{{url_for('static', filename='js/clock.js')}}"></script>
+        </div>
     </div>
+        
+
+</div>
+
+ <script>
+$("input[type='checkbox']").click(function()
+{
+    image = "#image-"+ String(this.id);
+        if($(this).is(":checked"))
+        {
+            
+            $(image).attr('src',"{{url_for('static', filename='image/room-color.png')}}");
+            console.log(image);
+            send_command(this.id, true)
+        }
+        else
+        {
+            $(image).attr('src', "{{url_for('static', filename='image/room.png')}}");
+            console.log("uncheck");
+            send_command(this.id, false)
+        }
+});
+</script>
+
+
+
 
         
 

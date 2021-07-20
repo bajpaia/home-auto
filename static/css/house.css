@@ -3,9 +3,20 @@
 
   overflow: hidden;
   width: 100%;
-
-
 }
+@media (orientation: landscape) 
+{
+  body {
+    display: flex;
+    flex-direction: row;
+  }
+  .container
+  {
+    height: 125%;
+  }
+}
+
+
 
 .edit-button {
   position: relative;
@@ -147,16 +158,13 @@ margin-top: 0.2em;
 
 }
 
-.buttons
-{
-  top:10%;
-}
 
 
 
-  @media only screen and (min-width: 600px)
+@media only screen and (min-width:1000px)
   {
-    .button-container {
+    .button-container 
+    {
       min-height: 75px;
       overflow: hidden;
       height: auto;
@@ -165,19 +173,85 @@ margin-top: 0.2em;
       grid-template-columns: repeat(4, minmax(auto, 1fr));
       grid-gap:1px, 10px;
       padding-top:4em;
-      
+    
     }
-    .button
+    .buttons
+    {
+      margin-bottom: 0.5em;
+    }
+  }
+
+
+  @media only screen and (min-width: 600px) and (max-width:1000px)
+  {
+    .button-container 
+    {
+      min-height: 75px;
+      overflow: hidden;
+      height: auto;
+      text-align: center;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(auto, 1fr));
+      grid-gap:1px, 10px;
+      padding-top:2em;
+
+    
+    }
+
+  @media (orientation: landscape) 
+  {
+    body {
+      display: flex;
+      flex-direction: row;
+    }
+    .container
+    {
+      height: 125%;
+      border-radius: 50px;
+    }
+
+    .button-container {
+      min-height: 75px;
+      overflow: hidden;
+      height: auto;
+      text-align: center;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(auto, 1fr));
+      grid-gap:1px, 10px;
+      padding-top:1em;
+    padding-bottom: 1em;
+    
+  }
+    .date-time-task
+    {
+      margin-top: 1em;
+    }
+
+  }
+
+  .temp-hum 
+  {
+    background: linear-gradient(to bottom left,#232E49, #3E4569);
+    border-radius: 15px;
+    box-shadow: 0.1em 0.1em 0.1em #00000038, 0.1em 0.1em 0.1em #00000038;
+    margin-left: 5.7em;
+    margin-right: 6.4em;
+    display: flex;
+    margin-top: 1em;
+  }
+}
+    /* .button
     {
       min-width: 200;
     }
 
 
 
-  }
+  } */
   
   @media only screen and (max-width: 500px)
   {
+   
 .button-container {
   min-height: 75px;
   overflow: hidden;
@@ -192,6 +266,8 @@ margin-top: 0.2em;
 
 }
 
+
+
 .access-button {
   display: flex;
   justify-content: center;
@@ -200,9 +276,10 @@ margin-top: 0.2em;
 }
 
 .buttons{
-  padding-top: 2em;
-    padding-left: 2em;
-    padding-right: 2em;
+  padding-top: 1em;
+  padding-left: 1em;
+    padding-right: 1em;
+
 }
 .button 
 {
@@ -253,16 +330,18 @@ background: linear-gradient(#073,#0fa);
 {
   min-width:70px;
   max-width: 135px;
-  min-height: 70px;
-  max-height: 150px;
+  height: auto;
   background-color: gray;
   color:white;
   text-align: center;
   text-decoration: none;
-  font-size: 16px;
+  font-size: 11px;
   cursor: pointer;
   box-shadow: 0px 1px 4px -2px #333;
   border-radius: 15px;
+  margin-top: 0.2em;
+  margin-bottom: 0.2em;
+  font-family: industry-inc-base, sans-serif;
 }
 
 .main-content
@@ -270,7 +349,7 @@ background: linear-gradient(#073,#0fa);
   border-top-left-radius: 50px;
   border-top-right-radius: 50px;
   background:linear-gradient(to bottom left,#232E49 40%,#121725 );
-  height: 100%;
+  height: -webkit-fill-available;
 }
 
 .camera-button
@@ -296,8 +375,8 @@ background: linear-gradient(#073,#0fa);
   background: linear-gradient(to bottom left,#232E49, #3E4569);
   border-radius: 15px;
   box-shadow:0.1em 0.1em 0.1em #00000038, 0.1em 0.1em 0.1em #00000038;
-  margin-left: 3.5em;
-  margin-right: 3.5em;
+  margin-left: 2em;
+  margin-right: 2em;
 
 }
 
@@ -387,6 +466,7 @@ input:checked + .slider:before {
   margin-left: 3em;
   margin-right: 3em;
   display: flex;
+  margin-top: 1em;
 }
 
 
@@ -407,14 +487,15 @@ margin-top: 0.2em;
     border-radius: 15px;
     min-height: 70px;
     max-height: 80px;
-    min-width: 70px;
+    min-width: 110px;
     max-width: 135px;
     color: seashell;
     font-family: industry-inc-base, sans-serif;
     display: grid;
   grid-template-areas:
-    'image name '
-    'image slider';
+    'image name name'
+    'image slider slider';
+    grid-template-columns: 50% 25% 25%;
     padding: 0.5em;
     position: relative;
     margin: 0.2em;

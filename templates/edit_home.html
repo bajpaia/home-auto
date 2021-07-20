@@ -7,7 +7,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.2/socket.io.js" integrity="sha512-iZIBSs+gDyTH0ZhUem9eQ1t4DcEn2B9lHxfRMeGQhyNdSUz+rb+5A3ummX6DQTOIs1XK0gOteOg/LPtSo9VJ+w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     
-
+        <style>
         @import url("https://use.typekit.net/oaq5uou.css");
       </style>
 
@@ -80,6 +80,7 @@ $('input[type="checkbox"]').on('change', function()
         <div class="button-container" id="button-container">
         
         {%for room in rooms%}
+            <div>
             <div class="access-button" id="buttons">
                <button type="button" class="button" "btn-selection" id="{{rooms[room].code}}" onclick="window.location.href='{{ url_for('controls' , sid=room)}}';"> 
                             <img class="room-icon" src="{{url_for('static', filename='image/room.png')}}">
@@ -88,7 +89,9 @@ $('input[type="checkbox"]').on('change', function()
                             </span>
                         </button>
 
+              </div>
                 <input class="name-button" type="text" name ="{{rooms[room].code}}"id="input-text-{{rooms[room].code}}" onchange="changeButtonText('{{rooms[room].code}}')">
+            
             </div>
         {%endfor%} 
         

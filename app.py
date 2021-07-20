@@ -125,7 +125,10 @@ def edit_room(sid):
     if not current_user.is_authenticated:
         return redirect(url_for('index'))
     if request.method == 'GET':
-        return render_template('edit_room.html', room = rooms[sid])
+        if sid in rooms:
+            return render_template('edit_room.html', room = rooms[sid])
+        else:
+            return redirect(url_for('home'))
     room = rooms[sid]
     for relay in room['relays']:
         name = request.form.get(str(relay['pin']))
