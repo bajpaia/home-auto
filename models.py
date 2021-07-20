@@ -32,7 +32,21 @@ class Relay:
 
 
     def is_active(self):
+        
         return self.active
+
+    
+    def init_relay(self):
+        GPIO.setmode(GPIO.BOARD)
+        GPIO.setup(self.pin, GPIO.OUT)
+        if self.active:
+            GPIO.output(self.pin, GPIO.HIGH)
+            print('relay {0} on'.format(self.pin))
+        else:
+            GPIO.output(self.pin, GPIO.LOW)
+            print('relay {0} off'.format(self.pin))
+
+
 
 
     def __eq__(self, other):
@@ -82,7 +96,7 @@ class Room:
         self.__dict__.update(tmp_dict) 
         if len(self.relays)>0:
             for relay in self.relays:
-                relay.toggle()
+                relay.init_relay()
 
 
     def save(self):
