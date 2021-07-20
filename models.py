@@ -80,6 +80,9 @@ class Room:
         f.close()          
         self.__dict__.clear()
         self.__dict__.update(tmp_dict) 
+        if len(self.relays)>0:
+            for relay in self.relays:
+                relay.toggle()
 
 
     def save(self):
