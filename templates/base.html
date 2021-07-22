@@ -39,6 +39,35 @@
         </div>
     </div>
     
+    <div id="myNav" class="overlay">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <div class="overlay-content">
+		<ul style="list-style-type:none;">
+          <li> 
+              <div class="to-do-item">
+                	<p class="to-do-item-text">Man shouldnt li with another man </p>
+                	<a href="javascript:void(0)" class="delete" onclick="close">&times;</a>
+              </div>		
+           </li>
+        </ul>
+        <div class="to-do-text">
+        	<input class=to-do-input type="text">
+        </div>
+  </div>
+</div>
+
+<span style="font-size:30px;cursor:pointer" onclick="openNav()">; open</span>
+
+<script>
+function openNav() {
+  document.getElementById("myNav").style.width = "50%";
+}
+
+function closeNav() {
+  document.getElementById("myNav").style.width = "0%";
+}
+</script>
+    
 
 </body>
 </html>

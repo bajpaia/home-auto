@@ -8,7 +8,7 @@ eight_relays = {40:False, 38:False, 37:False, 36:False, 35:False, 33:False, 29:F
 
 single_channel_room = Room()
 eight_channel_room = Room()
-single_channel = Relay()
+single_channel = Relay(pin=11)
 eight_channel = [Relay(pin=num) for num in eight_relays]
 
 

@@ -51,9 +51,10 @@
     <script>
         function changeButtonText(button)
         {     
-            input_box = "input-text-" + button
+            input_box = "input-text-" + button;
+            name = "relay-"+ button;
             console.log(input_box);
-            document.getElementById(button).innerHTML = document.getElementById(input_box).value;
+            document.getElementById(name).innerHTML = document.getElementById(input_box).value;
         }
 
         function submit_form(){
@@ -106,7 +107,7 @@
                  <div>
                 <div class="room-access-button" id="buttons">
                     <img class="room-icon" style="margin:auto; grid-area:image;" id="image-{{relay.pin}}" src="{{url_for('static', filename='image/room.png')}}">
-                    <p style=" grid-area:name;font-size: 11px;position: absolute;right: 0;" id ="{{relay.pin}}">{{relay.name}}</p>
+                    <p style=" grid-area:name;font-size: 11px;position: absolute;right: 0;" id ="relay-{{relay.pin}}">{{relay.name}}</p>
                     <div class="switch-container" style="margin:auto; grid-area:slider;">
                         <label class="switch" for="{{relay.pin}}">
                             <input type="checkbox" id="{{relay.pin}}" >
@@ -120,7 +121,9 @@
                 <div>
                 <div class="room-access-button" id="buttons">
                     <img class="room-icon" style="margin:auto; grid-area:image;" id="image-{{relay.pin}}" src="{{url_for('static', filename='image/room-color.png')}}">
-                    <p style=" grid-area:name;font-size: 11px;position: absolute;right: 0;" id ="{{relay.pin}}>{{relay.name}}</p>
+                    <p style="grid-area:name;font-size: 11px;position: absolute;right: 0;" id ="relay-{{relay.pin}}">
+                        {{relay.name}}
+                    </p>
                     <div class="switch-container" style="margin:auto; grid-area:slider;">
                         <label class="switch" for="{{relay.pin}}">
                             <input type="checkbox" id="{{relay.pin}}" checked>
@@ -188,9 +191,11 @@
 
 </div>
 
+
  <script>
 $("input[type='checkbox']").click(function()
 {
+    console.log('checkbox clicked');
     image = "#image-"+ String(this.id);
         if($(this).is(":checked"))
         {
@@ -207,7 +212,6 @@ $("input[type='checkbox']").click(function()
         }
 });
 </script>
-
 
 
 

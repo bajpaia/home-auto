@@ -80,3 +80,91 @@
     margin-top: 10px; */
 }
 
+.overlay {
+    height: auto;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    right: 0;
+    background: linear-gradient(to bottom left,#121725,#232E49 40% );
+    overflow-x: hidden;
+    transition: 0.5s;
+    color:white;
+    border-radius:5px;
+  }
+  
+  .overlay-content {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+  }
+  
+  .overlay a {
+    padding: 1px;
+    text-decoration: none;
+    font-size: 36px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  .overlay a:hover, .overlay a:focus {
+    color: #f1f1f1;
+  }
+  
+  .overlay .closebtn {
+    position: absolute;
+    top:0 ;
+    right: 10px;
+    font-size: 20px;
+    
+  }
+  
+  .to-do-item
+  {	display:flex;
+      padding:5px;
+      margin:1em;
+      border-radius:5px;
+      background: linear-gradient(to bottom left,#232E49 40%,#121725 );
+  }
+  
+  .to-do-input
+  {
+      border-radius:5px;
+      padding:3px;
+      margin:3em;
+      width:80%;
+  
+  }
+  
+  .to-do-text
+  {
+      margin:1em;
+      padding:1px;
+      width:80%;
+  }
+  
+  .delete
+  
+  {
+          display:block;
+          margin:auto;
+        font-size:1px;
+  }
+  
+  .to-do-item-text
+  {
+  margin:auto;
+  }
+  
+  
+  @media screen and (max-height: 450px) {
+    .overlay a {font-size: 20px}
+    .overlay .closebtn 
+    {
+    font-size: 40px;
+    top: 0;
+    right: 35px;
+    }
+  }
