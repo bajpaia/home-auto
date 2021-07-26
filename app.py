@@ -33,6 +33,10 @@ def cam_toggle():
         print("on")
 
 
+def get_tasks():
+    return Task.query.all()
+
+
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
@@ -95,7 +99,7 @@ def home():
     if not current_user.is_authenticated:
         return redirect(url_for('index'))
     print(current_user.name)
-    return render_template('home.html', rooms = rooms)
+    return render_template('home.html', rooms = rooms, tasks=get_tasks())
 
 
 
@@ -114,11 +118,21 @@ def edit_home():
             socket.emit("change_room_name", {"name":name}, room=room)
     return redirect(url_for('home'))
 
-
+@login_required
 @app.route('/logout')
 def logout():
     logout_user()
     return redirect(url_for('index'))
+
+
+@login_required
+@app.route('/to-do', methods=['POST'])
+def to_do():
+    task = Task(text=request.form.get('todo'))
+    db.session.add(task)
+    db.session.commit()
+    return redirect(url_for('home'))
+
 
 @login_required
 @app.route('/<sid>/edit_room', methods=['GET', 'POST'])

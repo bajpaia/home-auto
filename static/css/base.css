@@ -92,6 +92,7 @@
     transition: 0.5s;
     color:white;
     border-radius:5px;
+    box-shadow: 0.1em 0.1em 0.1em #01020538, -0.1em -0.1em 0.1em #01020538;
   }
   
   .overlay-content {
@@ -103,7 +104,7 @@
   .overlay a {
     padding: 1px;
     text-decoration: none;
-    font-size: 36px;
+    font-size: 20px;
     color: #818181;
     display: block;
     transition: 0.3s;
@@ -130,12 +131,16 @@
   }
   
   .to-do-input
-  {
+  {   border:none;
       border-radius:5px;
       padding:3px;
-      margin:3em;
-      width:80%;
-  
+    width: 70%;
+    flex-grow: 2;
+    background: #121826;
+    color: seashell;
+    font-family: industry-inc-base, sans-serif;
+    font-size: 10px;
+    height: auto;
   }
   
   .to-do-text
@@ -149,8 +154,7 @@
   .delete
   
   {
-          display:block;
-          margin:auto;
+
         font-size:1px;
   }
   
@@ -159,6 +163,7 @@
   margin:auto;
   font-size: 10px;
   padding: 0.2em;
+  font-family: industry-inc-base, sans-serif;
   }
   
   
@@ -170,4 +175,26 @@
     top: 0;
     right: 35px;
     }
+  }
+
+
+  .task-form
+  {
+      display:flex;
+      flex-direction:row;
+      box-shadow:0.1em 0.1em 0.1em #01020538, -0.1em -0.1em 0.1em #01020538;
+    padding:2px;
+    border-radius: 5px;
+    margin-left: 0.5em;
+    border-radius: 5px;
+    
+  }
+
+  .add-task-button
+  {
+    box-shadow:0.1em 0.1em 0.1em #01020538, -0.1em -0.1em 0.1em #01020538;
+    background:linear-gradient(to bottom left,#232E49, #3E4569);
+    color:white;
+    font-family: industry-inc-base, sans-serif;
+    border-radius: 3px;
   }
