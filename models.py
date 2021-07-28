@@ -5,6 +5,7 @@ from threading import Thread, Event
 from time import sleep
 from copy import deepcopy
 from PCA9685 import PCA9685
+import time
 
 
 
@@ -94,9 +95,10 @@ class Room:
         f.close()          
         self.__dict__.clear()
         self.__dict__.update(tmp_dict) 
-        # if len(self.relays)>0:
-        #     for relay in self.relays:
-        #         relay.init_relay()
+        if len(self.relays)>0:
+            for relay in self.relays:
+                relay.init_relay()
+                time.sleep(0.2)
 
 
     def save(self):
