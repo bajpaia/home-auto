@@ -14,7 +14,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 db = SQLAlchemy(app)
 login_manager.init_app(app)
 login_manager.login_view = 'home'
-socket = SocketIO(app, async_mode='threading')
+socket = SocketIO(app)
 
 from db_models import *
 
