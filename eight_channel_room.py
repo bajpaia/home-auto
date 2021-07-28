@@ -7,12 +7,12 @@ from models import Room
 from copy import deepcopy
 import RPi.GPIO as GPIO
 import asyncio
-# from models import TemperatureHumiditySensor
+from models import TemperatureHumiditySensor
 
 
 SERVER = 'http://192.168.0.201:5000'
 room = Room()
-# temp_hum = TemperatureHumiditySensor()
+temp_hum = TemperatureHumiditySensor()
 room.load()
 connected = False
 user_toggle = False  ##True, if user viewing room on browser (flag for background tasks)
@@ -60,12 +60,11 @@ def name_change(data):
 
 @sio.on("toggle_room_sensors")
 def toggle_sensors():
-    pass
-    # global task
-    # if not task:
-    #     task = sio.start_background_task(get_sensor_data, temp_hum)
-    # else:
-    #     print('already running')
+    global task
+    if not task:
+        task = sio.start_background_task(get_sensor_data, temp_hum)
+    else:
+        print('already running')
 
 
 @sio.on('execute_request')
