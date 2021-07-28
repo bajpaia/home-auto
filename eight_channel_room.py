@@ -65,6 +65,7 @@ def toggle_sensors():
         task = sio.start_background_task(get_sensor_data, temp_hum)
     else:
         print('already running')
+        get_sensor_data(temp_hum)
 
 
 @sio.on('execute_request')
