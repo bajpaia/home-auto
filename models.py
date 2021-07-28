@@ -95,10 +95,10 @@ class Room:
         f.close()          
         self.__dict__.clear()
         self.__dict__.update(tmp_dict) 
-        if len(self.relays)>0:
-            for relay in self.relays:
-                relay.init_relay()
-                time.sleep(0.5)
+        # if len(self.relays)>0:
+        #     for relay in self.relays:
+        #         relay.init_relay()
+
 
 
     def save(self):
