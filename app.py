@@ -2,7 +2,6 @@ from flask import *
 from flask_socketio import *
 import  flask_socketio
 import cv2
-from imutils.video import VideoStream
 from flask_login import login_user, login_required, logout_user, current_user, LoginManager
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
