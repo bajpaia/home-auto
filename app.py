@@ -108,7 +108,7 @@ def edit_home():
     if not current_user.is_authenticated:
         return redirect(url_for('index'))
     if request.method == 'GET':
-        return render_template('edit_home.html', rooms = rooms)
+        return render_template('edit_home.html', rooms = rooms, tasks=get_tasks())
     if request.method == 'POST':
         print('Posting')
     for room in rooms:
@@ -150,7 +150,7 @@ def edit_room(sid):
         return redirect(url_for('index'))
     if request.method == 'GET':
         if sid in rooms:
-            return render_template('edit_room.html', room = rooms[sid])
+            return render_template('edit_room.html', room = rooms[sid], tasks=get_tasks())
         else:
             return redirect(url_for('home'))
     room = rooms[sid]
@@ -168,7 +168,7 @@ def controls(sid):
         return redirect(url_for('index'))
     if request.method == 'GET':
         if sid in rooms:
-            return render_template('room.html', room=rooms[sid])
+            return render_template('room.html', room=rooms[sid], tasks=get_tasks())
         return redirect(url_for('home'))
 
 @login_required
@@ -176,7 +176,7 @@ def controls(sid):
 def security():
     if not current_user.is_authenticated:
         return redirect(url_for('index'))
-    return render_template('camera.html')
+    return render_template('camera.html', tasks=get_tasks())
 
 
 
