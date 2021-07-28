@@ -132,7 +132,7 @@
   
   .to-do-input
   {   border:none;
-      border-radius:5px;
+    border-radius: 5px 0px 0px 5px;
       padding:3px;
     width: 70%;
     flex-grow: 2;
@@ -184,7 +184,7 @@
       flex-direction:row;
       box-shadow:0.1em 0.1em 0.1em #01020538, -0.1em -0.1em 0.1em #01020538;
     padding:2px;
-    border-radius: 5px;
+    
     margin-left: 0.5em;
     border-radius: 5px;
     
@@ -196,5 +196,13 @@
     background:linear-gradient(to bottom left,#232E49, #3E4569);
     color:white;
     font-family: industry-inc-base, sans-serif;
-    border-radius: 3px;
+    border-radius: 0px 5px 5px 0px;
+  }
+
+  .delete-task-button
+  {
+    background:transparent;
+    border: none;
+    color: seashell;
+    font-family: industry-inc-base, sans-serif;
   }

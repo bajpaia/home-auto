@@ -128,8 +128,18 @@ def logout():
 @login_required
 @app.route('/to-do', methods=['POST'])
 def to_do():
-    task = Task(text=request.form.get('todo'))
-    db.session.add(task)
+    if len(request.form.get('todo'))>0:
+        task = Task(text=request.form.get('todo'))
+        db.session.add(task)
+        db.session.commit()
+    return redirect(url_for('home'))
+
+
+@login_required
+@app.route('/delete-to-do', methods=['POST'])
+def del_to_do():
+    print("delete {}".format(request.form.get('todoId')))
+    Task.query.filter_by(id=request.form.get('todoId')).delete()
     db.session.commit()
     return redirect(url_for('home'))
 

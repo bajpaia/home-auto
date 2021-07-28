@@ -71,25 +71,20 @@
         {%for task in tasks%}
         <li id="list-{{task.id}}"> 
               <div class="to-do-item">
-                	<p class="to-do-item-text">{{task.text}} </p>
-                	<a href="javascript:void(0)" class="delete" id="{{task.id}}" onclick="delete_item(this.id);">&times;</a>
+                    <form class="delete-form"id="{{task.id}}" style="display:flex;margin-block-end:0;">
+                	    <p class="to-do-item-text">{{task.text}} </p>
+                	    <input type="submit" class="delete-task-button" id="{{task.id}}" value='&times;' ></input>
+                    </form>
               </div>		
            </li>
 
         {%endfor%}
-
-          <li id="list-id"> 
-              <div class="to-do-item">
-                	<p class="to-do-item-text">Man shouldnt li with another man </p>
-                	<a href="javascript:void(0)" class="delete" id="id" onclick="delete_item(this.id);">&times;</a>
-              </div>		
-           </li>
         </ul>
         <div class="to-do-text" id="task-form">
         	
             <form class="task-form" id="task-form">
                 <input class="to-do-input" type="text" id="input-task">
-                <input type="submit" id="submit-task"class="add-task-button">+</input>
+                <input type="submit"  value="+" id="submit-task"class="add-task-button"></input>
             </form>
         </div>
   </div>
@@ -106,12 +101,25 @@ function openNav() {
 function closeNav() {
   document.getElementById("myNav").style.width = "0%";
 }
-function delete_item(item)
+
+    $(document).on('submit','.delete-form',function(e)
 {
-    item = "list-"+item;
-    item = document.getElementById(item);
-    item.remove();
-}
+    item = e.target.id;
+    e.preventDefault();
+    $.ajax({
+        type:'POST',
+        url:'/delete-to-do',
+                data:{
+          todoId:String(item)
+        },
+        success:function()
+        {
+          console.log('saved');
+          $( "#tasks" ).load(window.location.href + " #tasks" );
+        }
+      });
+      return false;
+});
 
 
 </script>
