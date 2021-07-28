@@ -98,7 +98,7 @@ class Room:
         if len(self.relays)>0:
             for relay in self.relays:
                 relay.init_relay()
-                time.sleep(0.2)
+                time.sleep(0.5)
 
 
     def save(self):
