@@ -102,7 +102,7 @@ class Room:
 
 
     def save(self):
-        f = open('room_config.pickle', 'wb')
+        f = open('.room_config.pickle', 'wb')
         pickle.dump(self.__dict__, f)
         f.close()
 
