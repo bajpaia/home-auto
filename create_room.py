@@ -1,5 +1,6 @@
 from models import Room, Relay
 import json
+import os
 
 
 
@@ -13,7 +14,10 @@ eight_channel = [Relay(pin=num) for num in eight_relays]
 
 
 single_channel_room.add_relays(single_channel)
+print('adding relay')
 eight_channel_room.add_relays(eight_channel)
 eight_channel_room.save()
+print('saving room')
 
+print(os.system('cwd'))
 
