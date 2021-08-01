@@ -19,5 +19,6 @@ eight_channel_room.add_relays(eight_channel)
 eight_channel_room.save()
 print('saving room')
 
-print(os.system('cwd'))
+print(os.system('pwd'))
+print(os.system('ls'))
 
