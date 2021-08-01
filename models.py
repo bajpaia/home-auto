@@ -90,7 +90,7 @@ class Room:
 
 
     def load(self):
-        f = open('room_config.pickle', 'rb')
+        f = open('Desktop/Projects/home-auto/room_config.pickle', 'rb')
         tmp_dict = pickle.load(f)
         f.close()          
         self.__dict__.clear()
