@@ -50,16 +50,7 @@ def connection_event():
 def disconnection_event():
     connected = False
     room.save()
-    while not connected:
-        try:
-            sio.connect(SERVER)
-        except Exception as e:
-            print(e)
-        else:
-            connected = True
-            print('connected')
-            room_json = get_room()
-            sio.emit('connection_ack', room_json)
+
 
 @sio.on('change_room_name')
 def name_change(data):
