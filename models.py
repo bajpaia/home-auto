@@ -90,6 +90,7 @@ class Room:
 
 
     def load(self, path='Desktop/Projects/home-auto/room_config.pickle'):
+        print('loading room')
         f = open(path, 'rb')
         tmp_dict = pickle.load(f)
         f.close()          
@@ -102,6 +103,7 @@ class Room:
 
 
     def save(self, path='Desktop/Projects/home-auto/room_config.pickle'):
+        print('saving room')
         f = open(path, 'wb')
         pickle.dump(self.__dict__, f)
         f.close()
