@@ -10,7 +10,7 @@ from models import TemperatureHumiditySensor
 
 SERVER = 'http://192.168.0.201:5000'
 room = Room()
-room.load()
+room.load('./single_room_config.pickle')
 connected = False
 user_toggle = False  ##True, if user viewing room on browser (flag for background tasks)
 sio = socketio.Client()
@@ -57,14 +57,14 @@ def name_change(data):
     sio.emit('connection_ack', room_json)
 
 
-@sio.on("toggle_room_sensors")
-def toggle_sensors():
-    global task
-    if not task:
-        task = sio.start_background_task(get_sensor_data, temp_hum)
-    else:
-        print('already running')
-        get_sensor_data(temp_hum)
+# @sio.on("toggle_room_sensors")
+# def toggle_sensors():
+#     global task
+#     if not task:
+#         task = sio.start_background_task(get_sensor_data, temp_hum)
+#     else:
+#         print('already running')
+#         get_sensor_data(temp_hum)
 
 
 @sio.on('execute_request')
