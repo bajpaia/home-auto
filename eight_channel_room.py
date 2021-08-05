@@ -95,7 +95,9 @@ def change_name_relay(data):
 def get_sensor_data(sensor):
     while sensor.active:
         values = sensor.get_data()
-        sio.emit('process_sensor_data', values)
-        sio.sleep(sensor.delay*60)
-
+        try:
+            sio.emit('process_sensor_data', values)
+            sio.sleep(sensor.delay*60)
+        except Exception as e:
+            print(e)
 
