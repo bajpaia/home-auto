@@ -10,7 +10,6 @@ from models import TemperatureHumiditySensor
 
 SERVER = 'http://192.168.0.201:5000'
 room = Room()
-temp_hum = TemperatureHumiditySensor()
 room.load()
 connected = False
 user_toggle = False  ##True, if user viewing room on browser (flag for background tasks)

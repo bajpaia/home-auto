@@ -167,24 +167,34 @@ class ServoDriver:
         pulse = self.degree_to_pulse(degree)+500
         self.move_by_pulse(channel, pulse)
         
+class Sensor:
+    def __init__(self, pin):
+        self.pin = pin
 
 
-class PiClient:
 
-    def __init__(self, server_address, room):
-        self.connected = False
-        self.server_address = server_address
-        self.sio = socketio.Client()
-        self.room = room
-        while not self.connected:
-            try:
-                self.sio.connect(self.server_address)
-            except Exception as e:
-                print(e)
-            else:
-                self.connected = True
-                print('connected')
-                self.sio.emit('connection_ack', self.room.__dict__)
+
+# class PiClient:
+
+#     def __init__(self, server_address, room):
+#         self.connected = False
+#         self.server_address = server_address
+#         self.sio = socketio.Client()
+#         self.room = room
+#         while not self.connected:
+#             try:
+#                 self.sio.connect(self.server_address)
+#             except Exception as e:
+#                 print(e)
+#             else:
+#                 self.connected = True
+#                 print('connected')
+#                 self.sio.emit('connection_ack', self.room.__dict__)
+
+#     @sio.on('disconnect')
+#     def disconnection_event():
+#         connected = False
+#         self.room.save()
 
 
 # class SecurityCamera:
