@@ -45,13 +45,13 @@ def connection_event():
 @sio.on('disconnect')
 def disconnection_event():
     connected = False
-    room.save()
+    room.save('./single_room_config.pickle')
 
 
 @sio.on('change_room_name')
 def name_change(data):
     room.name = data["name"]
-    room.save()
+    room.save('./single_room_config.pickle')
     room_json = get_room()
     sio.emit('connection_ack', room_json)
 
@@ -82,7 +82,7 @@ def change_name_relay(data):
         if data['relay']==relay.pin and len(data['name'])>0:
             relay.name = data['name']
 
-    room.save()
+    room.save('./single_room_config.pickle')
     room_json = get_room()
     sio.emit('connection_ack', room_json)
 
