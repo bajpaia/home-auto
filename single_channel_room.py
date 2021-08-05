@@ -5,7 +5,6 @@ import json
 import pickle
 from models import Room
 from copy import deepcopy
-from models import TemperatureHumiditySensor
 
 
 SERVER = 'http://192.168.0.201:5000'
