@@ -186,7 +186,7 @@ def guide():
 
 
 @socket.on('connection_ack')
-def acknoledge(data):
+def acknowledge(data):
     print(data)
     room_name = data['name']
     socket.emit('update_home', data)

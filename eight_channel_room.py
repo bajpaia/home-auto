@@ -48,7 +48,7 @@ def connection_event():
 def disconnection_event():
     connected = False
     if task:
-        task.stop()
+        task.join()
     room.save()
 
 
