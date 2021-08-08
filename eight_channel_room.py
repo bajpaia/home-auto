@@ -47,6 +47,8 @@ def connection_event():
 @sio.on('disconnect')
 def disconnection_event():
     connected = False
+    if task:
+        task.stop()
     room.save()
 
 
